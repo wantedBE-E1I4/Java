@@ -76,6 +76,7 @@ git commit -m "아무거나"
 ## 🌿 브랜치 관리 전략
 
 ### Git Flow 구조
+
 ```
 main (배포용 메인 브랜치)
 ├── feature/member1 # 멤버1의 학습 + 코드수정 
@@ -229,13 +230,15 @@ javac -version
 예상 출력: java version "11.0.x" 이상
 text
 ```
+
 **Git 설정**
+
 Git 사용자 정보 설정
-git config --global user.name "본인이름"
-git config --global user.email "본인이메일@example.com"
+- `git config --global user.name "본인이름"`
+- `git config --global user.email "본인이메일@example.com"`
 
 설정 확인
-git config --list
+- `git config --list`
 
 
 #### Step 3: 팀 커뮤니케이션 참여
