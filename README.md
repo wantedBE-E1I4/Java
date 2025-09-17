@@ -1,7 +1,7 @@
 # Java
 wantedBE 1번째 달 팀스터디 
 
-<H1>commit convention</H1>H1>
+<H1>commit convention</H1>
 - feat : 새로운 기능 추가
 - fix : 버그 수정
 - docs : 문서의 수정
