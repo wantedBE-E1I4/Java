@@ -1,5 +1,6 @@
 # Java
 wantedBE 1번째 달 팀스터디 
+https://www.notion.so/ohgiraffers/270649136c1180c58622c93aa405ffe3?v=270649136c11807c97f2000c47bf764c
 
 # ☕ Java Study Team
 
@@ -75,12 +76,13 @@ git commit -m "아무거나"
 ## 🌿 브랜치 관리 전략
 
 ### Git Flow 구조
+```
 main (배포용 메인 브랜치)
 ├── feature/member1 # 멤버1의 학습 + 코드수정 
 ├── feature/member2 # 멤버2의 학습 + 코드수정 
 ├── feature/member3 # 멤버3의 학습 + 코드수정 
 └── main # 최종 프로젝트 (무기 상점 게임 weapon-shop-game)
-
+```
 
 ### 작업 플로우
 ```
@@ -98,6 +100,36 @@ git checkout -b feature/yourname-week01
 ### PR 생성 규칙
 
 #### 1. PR 제목 형식
+```
+PR 제목 작성 규칙
+1. 기본 형식
+[타입] 간단한 요약 설명
+또는 
+타입: 간단한 요약 설명
+2. 타입 종류
+[FEAT] 또는 feat: - 새로운 기능 추가
+
+[FIX] 또는 fix: - 버그 수정
+
+[DOCS] 또는 docs: - 문서 수정
+
+[STYLE] 또는 style: - 코드 포맷팅, 스타일 변경
+
+[REFACTOR] 또는 refactor: - 코드 리팩터링
+
+[TEST] 또는 test: - 테스트 코드 추가/수정
+
+[CHORE] 또는 chore: - 기타 작업
+```
+3. 제목 작성 원칙
+50자 이내로 간결하게 작성
+
+명령형 현재시제 사용 ("Add", "Fix", "Update")
+
+첫 글자 대문자로 시작
+
+마침표 없이 작성
+
 ```
 [타입] 간단한 설명 - 작성자명
 
@@ -132,29 +164,16 @@ git checkout -b feature/yourname-week01
 개선이 필요한 부분
 ```
 
+PR 라벨링 규칙
+Priority: high, medium, low
+
+Type: feature, bugfix, hotfix, refactor
+
+Status: WIP (Work In Progress), ready for review, needs changes
+
+Size: XS, S, M, L, XL (변경된 코드 양 기준)
+
 ### PR 리뷰 규칙
-
-### 코드 리뷰 체크포인트
-```
-#### 📋 기본 체크사항
-- [ ] **컴파일 오류** 없음
-- [ ] **변수명/메서드명** 의미 명확
-- [ ] **들여쓰기** 일관성
-- [ ] **주석** 적절한 설명
-
-#### 🎯 학습 중심 체크사항  
-- [ ] **Java 문법** 올바른 사용
-- [ ] **객체지향 원칙** 적용 노력
-- [ ] **코드 가독성** 향상
-- [ ] **학습 목표** 달성도
-
-#### 🚀 프로젝트 중심 체크사항
-- [ ] **기능 요구사항** 충족
-- [ ] **예외 처리** 적절함
-- [ ] **성능** 고려사항
-- [ ] **확장성** 고려
-```
-
 #### 리뷰어 규칙
 - **최소 1명 이상**의 팀원 리뷰 필수
 - 학습용 PR은 **교육적 피드백** 위주
