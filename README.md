@@ -1,10 +1,7 @@
 # Java
-HEAD
-wantedBE 1번째 달 팀스터디 개인 리드미입니다. 
-=======
 wantedBE 1번째 달 팀스터디 
 
-<H1>commit convention</H1>
+commit convention
 - feat : 새로운 기능 추가
 - fix : 버그 수정
 - docs : 문서의 수정
@@ -12,4 +9,3 @@ wantedBE 1번째 달 팀스터디
 - refactor : 코드를 리팩토링
 - test : Test 관련한 코드의 추가, 수정
 - chore : (코드의 수정 없이) 설정을 변경
->>>>>>> 59e06cc (Update README.md)
