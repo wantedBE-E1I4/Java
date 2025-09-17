@@ -1,11 +1,10 @@
-# Java
-wantedBE 1번째 달 팀스터디 
-
-https://www.notion.so/ohgiraffers/270649136c1180c58622c93aa405ffe3?v=270649136c11807c97f2000c47bf764c
-
 # ☕ Java Study Team
 
 Java 문법 학습과 Git/GitHub 협업을 통한 실무 경험을 쌓기 위한 스터디 그룹입니다.
+
+Notion Link : https://www.notion.so/ohgiraffers/270649136c1180c58622c93aa405ffe3?v=270649136c11807c97f2000c47bf764c
+
+<br />
 
 ## 📚 스터디 목적
 
@@ -13,6 +12,8 @@ Java 문법 학습과 Git/GitHub 협업을 통한 실무 경험을 쌓기 위한
 - **GitHub 협업 경험**: 실무에서 사용하는 Git workflow 학습
 - **코드 리뷰 문화**: 서로의 코드를 검토하며 코딩 실력 향상
 - **알고리즘 문제 해결**: 백준, 프로그래머스 문제를 Java로 해결
+
+<br />
 
 ## 📁 폴더 구조 - 참고만!!! 확정아님 
 
@@ -27,6 +28,8 @@ Java 문법 학습과 Git/GitHub 협업을 통한 실무 경험을 쌓기 위한
 ├── 📂 projects/                     # 개인/팀 프로젝트
 └── 📂 resources/                    # 학습 자료
 ```
+
+<br />
 
 ## 🤝 커밋 컨벤션
 
@@ -65,6 +68,8 @@ git commit -m "수정"
 git commit -m "아무거나"
 ```
 
+<br />
+
 ## 🚀 참여 방법
 
 1. **Repository Fork**: 우측 상단의 Fork 버튼 클릭
@@ -73,6 +78,8 @@ git commit -m "아무거나"
 4. **작업 및 Commit**: 학습 내용 정리 후 커밋
 5. **Push**: `git push origin feature/your-name-week01`
 6. **Pull Request 생성**: 원본 저장소로 PR 요청
+
+<br />
 
 ## 🌿 브랜치 관리 전략
 
@@ -97,6 +104,8 @@ git checkout -b feature/yourname-week01
 3. **완료 후 Push 및 PR 생성**
 4. **코드 리뷰 후 main 브랜치로 병합**
 ```
+<br />
+
 ## 📋 Pull Request (PR) 규칙
 
 ### PR 생성 규칙
@@ -165,14 +174,15 @@ git checkout -b feature/yourname-week01
 개선이 필요한 부분
 ```
 
-PR 라벨링 규칙
-Priority: high, medium, low
+### PR 라벨링 규칙
 
-Type: feature, bugfix, hotfix, refactor
+- Priority: high, medium, low
 
-Status: WIP (Work In Progress), ready for review, needs changes
+- Type: feature, bugfix, hotfix, refactor
 
-Size: XS, S, M, L, XL (변경된 코드 양 기준)
+- Status: WIP (Work In Progress), ready for review, needs changes
+
+- Size: XS, S, M, L, XL (변경된 코드 양 기준)
 
 ### PR 리뷰 규칙
 #### 리뷰어 규칙
@@ -196,7 +206,6 @@ Size: XS, S, M, L, XL (변경된 코드 양 기준)
 "Optional을 사용해보는 것도 좋은 연습이 될 것 같아요"
 "이런 방식도 있어요: [코드 예시]"
 ```
-
 
 #### 🎯 전체 평가 템플릿
 @작성자명 님, PR 작성 수고하셨습니다!
@@ -242,6 +251,7 @@ null 체크를 추가하면 더 안전한 코드가 될 것 같습니다
 변수명을 더 구체적으로 하면 어떨까요? (예: data → studentGrades)
 
 ```
+
 ```
 #### 📚 학습 도움 템플릿
 학습 포인트:
@@ -293,6 +303,7 @@ Optional 클래스로 null 처리를 개선해보세요
 최종 코멘트:
 (종합적인 평가 및 격려 메시지)
 ```
+
 🔍 디테일한 리뷰 예시
 리뷰어: 박리뷰 (@park-reviewer)
 ```
@@ -336,6 +347,7 @@ public enum Operator {
 - **기능 PR**: 코드 품질 + 기능 동작 확인 후 승인
 - **버그 수정 PR**: 문제 해결 확인 후 즉시 승인
 
+<br />
 
 ## 🚪 온보딩 플로우
 
@@ -364,6 +376,7 @@ javac -version
 예상 출력: java version "11.0.x" 이상
 text
 ```
+<br />
 
 **Git 설정**
 
@@ -394,6 +407,7 @@ Git 사용자 정보 설정
 2. **GitHub Issue**로 기술적 문제 신고
 3. **팀장에게 개인 메시지**로 긴급한 도움 요청
 
+<br />
 
 ## 🔗 유용한 링크
 
