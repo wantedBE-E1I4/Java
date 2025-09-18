@@ -3,6 +3,8 @@
 ## 버전
 v0.0.1
 
+<br />
+
 Java 문법 학습과 Git/GitHub 협업을 통한 실무 경험을 쌓기 위한 스터디 그룹입니다.
 
 Notion Link : https://www.notion.so/ohgiraffers/270649136c1180c58622c93aa405ffe3?v=270649136c11807c97f2000c47bf764c
