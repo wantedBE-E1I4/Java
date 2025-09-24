@@ -5,36 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="976c26e4-8eb6-48a9-8e5f-ad586363e4e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/a_basic/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/a_basic/MainDeep.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/b_variable/Application01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/b_variable/chap01/Application01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/b_variable/chap01/Application02.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/b_variable/chap01/VariableDeep.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/b_variable/chap02/Application01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/b_variable/chap02/DatatypeDeep.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/c_operator/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/c_operator/OperatorsDeep.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/d_arrays/Application01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/e_string/Application01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/f_activity/lesson/activity01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/f_activity/lesson/md.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/f_activity/mission/a_basic/beginner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/f_activity/mission/a_basic/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ohgiraffers/f_activity/mission/b_middle/ScoreManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Module02-control-flow-and-Method" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.idea/Module03-Object-Oriented-Programming.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic/Car.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic2/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic2/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic2/MovieTicket.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic2/MovieTicket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic2/TicketWithoutConstructor.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap01/basic2/TicketWithoutConstructor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap02/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap02/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap02/capsule/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap02/capsule/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap02/deep/CapsuleDeep.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap02/deep/CapsuleDeep.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap02/noncapsule/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Module03-Object-Oriented-Programming/out/production/classes/com/orgiraffers/oop/chap02/noncapsule/Product.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,6 +210,8 @@
       <workItem from="1758243389694" duration="167000" />
       <workItem from="1758276220208" duration="5032000" />
       <workItem from="1758498966727" duration="4699000" />
+      <workItem from="1758527593651" duration="1945000" />
+      <workItem from="1758618741376" duration="2641000" />
     </task>
     <servers />
   </component>
