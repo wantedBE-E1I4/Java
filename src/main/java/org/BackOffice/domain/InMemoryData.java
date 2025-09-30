@@ -1,4 +1,4 @@
-package org.BackOffice;
+package org.BackOffice.domain;
 import java.time.LocalDateTime;
 import java.util.*;
 
