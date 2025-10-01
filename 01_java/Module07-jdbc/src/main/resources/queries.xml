@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<properties>
+    <query key="course.save">
+        INSERT INTO courses
+        (author_id, title, description, status)
+        VALUES
+        (?,?,?,?)
+    </query>
+
+    <query key="course.findById">
+        SELECT
+                course_id,
+                author_id,
+                title,
+                description,
+                status
+            FROM courses
+           WHERE course_id = ?
+    </query>
+
+    <query key="course.update">
+        UPDATE courses SET
+        title =?,
+        description = ?
+        WHERE course_id = ?
+    </query>
+
+    <query key = "course.delete">
+        DELETE FROM courses
+        WHERE course_id = ?
+
+    ></query>
+
+</properties>
