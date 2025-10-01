@@ -1,4 +1,4 @@
-package org.BackOffice.orderstatus.domain;
+package org.BackOffice.services.orderstatus.domain;
 
 /**
  *

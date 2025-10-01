@@ -1,8 +1,8 @@
-package org.BackOffice.orderstatus.service;
+package org.BackOffice.services.orderstatus.service;
 
-import org.BackOffice.orderstatus.domain.Order;
-import org.BackOffice.orderstatus.domain.OrderItem;
-import org.BackOffice.orderstatus.domain.OrderStatus; // OrderStatus import 추가
+import org.BackOffice.services.orderstatus.domain.Order;
+import org.BackOffice.services.orderstatus.domain.OrderItem;
+import org.BackOffice.services.orderstatus.domain.OrderStatus; // OrderStatus import 추가
 
 import java.util.List;
 

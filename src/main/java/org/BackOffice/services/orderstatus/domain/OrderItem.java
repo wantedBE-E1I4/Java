@@ -1,4 +1,4 @@
-package org.BackOffice.orderstatus.domain;
+package org.BackOffice.services.orderstatus.domain;
 
 /**
  * 주문에 포함된 개별 항목을 나타냅니다.

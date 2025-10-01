@@ -1,8 +1,8 @@
 package org.BackOffice;
 
-import org.BackOffice.orderstatus.domain.Order;
-import org.BackOffice.orderstatus.parser.OrderParser;
-import org.BackOffice.orderstatus.service.OrderStatusService;
+import org.BackOffice.services.orderstatus.domain.Order;
+import org.BackOffice.services.orderstatus.parser.OrderParser;
+import org.BackOffice.services.orderstatus.service.OrderStatusService;
 
 import java.util.List;
 
