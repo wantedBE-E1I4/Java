@@ -1,4 +1,4 @@
-package org.BackOffice.orderstatus.domain;
+package org.BackOffice.services.orderstatus.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;

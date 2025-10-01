@@ -1,8 +1,8 @@
-package org.BackOffice.orderstatus.parser;
+package org.BackOffice.services.orderstatus.parser;
 
-import org.BackOffice.orderstatus.domain.Order;
-import org.BackOffice.orderstatus.domain.OrderItem;
-import org.BackOffice.orderstatus.domain.OrderStatus;
+import org.BackOffice.services.orderstatus.domain.Order;
+import org.BackOffice.services.orderstatus.domain.OrderItem;
+import org.BackOffice.services.orderstatus.domain.OrderStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
