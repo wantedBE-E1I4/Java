@@ -36,7 +36,6 @@ public class Application {
         // System.out.println(org.BackOffice.domain.InMemoryData.INVENTORY);
 
 
-        // 대시보드
         System.out.println(
                 "1.재고 관리\n2.매출 분석\n3.주문 현황 관리\n4.멤버십/쿠폰 관리\n5.메뉴 관리");
         Scanner sc = new Scanner(System.in);
