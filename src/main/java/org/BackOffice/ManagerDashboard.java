@@ -1,13 +1,18 @@
 package org.BackOffice;
 
+import org.BackOffice.services.inventory.InventoryMenu;
+import org.BackOffice.services.loyalty.MembershipCouponMenu;
+import org.BackOffice.services.menu.ProductMenu;
+import org.BackOffice.services.orders.OrderMonitorMenu;
 import org.BackOffice.services.orderstatus.domain.Order;
 import org.BackOffice.services.orderstatus.parser.OrderParser;
 import org.BackOffice.services.orderstatus.service.OrderStatusService;
+import org.BackOffice.services.sales.SalesMenu;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class Application {
+public class ManagerDashboard {
 
     public static void main(String[] args) {
         // 1단계: 파싱할 원본 텍스트 데이터 준비
@@ -45,19 +50,19 @@ public class Application {
 
         switch (input) {
             case 1 -> {
-                InventoryMenu inventoryMenu = new InventoryMenu;
+                InventoryMenu inventoryMenu = new InventoryMenu();
             }
             case 2 -> {
-                SalesMenu inventoryMenu = new SalesMenu;
+                SalesMenu salesMenu = new SalesMenu();
             }
             case 3 -> {
-                OrderMonitorMenu inventoryMenu = new OrderMonitorMenu;
+                OrderMonitorMenu orderMonitorMenu = new OrderMonitorMenu();
             }
             case 4 -> {
-                MembershipCouponMenu inventoryMenu = new MembershipCouponMenu;
+                MembershipCouponMenu membershipCouponMenu = new MembershipCouponMenu();
             }
             case 5 -> {
-                ProductMenu inventoryMenu = new ProductMenu;
+                ProductMenu productMenu = new ProductMenu();
             }
         }
     }
