@@ -5,6 +5,7 @@ import org.BackOffice.services.orderstatus.parser.OrderParser;
 import org.BackOffice.services.orderstatus.service.OrderStatusService;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
 
@@ -33,5 +34,32 @@ public class Application {
         // 참고: 다른 팀의 기능은 기존 InMemoryData를 그대로 사용할 수 있습니다.
         // System.out.println("\n--- 기존 재고 데이터 (영향 없음) ---");
         // System.out.println(org.BackOffice.domain.InMemoryData.INVENTORY);
+
+
+        // 대시보드
+        System.out.println(
+                "1.재고 관리\n2.매출 분석\n3.주문 현황 관리\n4.멤버십/쿠폰 관리\n5.메뉴 관리");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("어떤 업무를 보시겠어요?");
+        int input = sc.nextInt();
+
+        switch (input) {
+            case 1 -> {
+                InventoryMenu inventoryMenu = new InventoryMenu;
+            }
+            case 2 -> {
+                SalesMenu inventoryMenu = new SalesMenu;
+            }
+            case 3 -> {
+                OrderMonitorMenu inventoryMenu = new OrderMonitorMenu;
+            }
+            case 4 -> {
+                MembershipCouponMenu inventoryMenu = new MembershipCouponMenu;
+            }
+            case 5 -> {
+                ProductMenu inventoryMenu = new ProductMenu;
+            }
+        }
     }
 }
