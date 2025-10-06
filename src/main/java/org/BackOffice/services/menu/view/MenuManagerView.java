@@ -21,10 +21,10 @@ public class MenuManagerView {
 
         switch (selection) {
             case 1 -> {
-                System.out.println("메뉴판 상태관리");
+                MenuBoardSettingView.view();
             }
             case 2 -> {
-                System.out.println("메뉴 등록");
+                AddAndDeleteMenuView.view();
             }
             case 3 -> {
                 pm.run();
