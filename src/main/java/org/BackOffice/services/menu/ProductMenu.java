@@ -2,6 +2,7 @@ package org.BackOffice.services.menu;
 
 import java.util.Scanner;
 import org.BackOffice.services.menu.view.menuView;
+import org.BackOffice.services.menu.view.menuManagerView;
 
 public class ProductMenu {
 
@@ -18,11 +19,10 @@ public class ProductMenu {
 
         switch (selection) {
             case 1 -> {
-                System.out.println("메뉴판 출력");
                 menuView.view();
             }
             case 2 -> {
-                System.out.println("메뉴 관리 탭 출력");
+                menuManagerView.view();
             }
         }
 
