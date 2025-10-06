@@ -1,4 +1,4 @@
-package org.BackOffice.services.menu.parser;
+package org.BackOffice.services.menu.loader;
 
 import static org.BackOffice.services.menu.tables.MenuTable.menuTable;
 
@@ -6,7 +6,7 @@ import org.BackOffice.domain.InMemoryData.Menu;
 import org.BackOffice.services.menu.domain.MenuEntity;
 import org.BackOffice.services.menu.domain.MenuStatus;
 
-public class ProductMenuParser {
+public class ProductMenuLoader {
     // test
     public static void main(String[] args) {
         syncMenuTable();
