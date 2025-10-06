@@ -1,8 +1,8 @@
 package org.BackOffice.services.loyalty;
 
+import org.BackOffice.services.loyalty.domain.Guest;
 import org.BackOffice.services.loyalty.domain.MenuItem;
 import org.BackOffice.services.loyalty.domain.Order;
-import org.BackOffice.services.loyalty.domain.OrderItem;
 import org.BackOffice.services.loyalty.service.GuestService;
 import org.BackOffice.services.loyalty.service.OrderService;
 
@@ -12,8 +12,6 @@ public class MembershipCouponMenu {
     public static void main(String[] args) {
         MembershipCouponMenu membership = new MembershipCouponMenu();
         membership.enter();
-
-
     }
 
     /**
@@ -44,25 +42,25 @@ public class MembershipCouponMenu {
      * 주문 시작
      */
     public void startOrder() {
+
         GuestService guestService = new GuestService();
-        OrderService orderService = new OrderService();
+
+        int currentGuestId = guestService.createGuest();
 
         boolean choosing = true;
-
-        Scanner sc = new Scanner(System.in);
-
         while (choosing) {
-            System.out.println("1.메뉴 선택\n2.결제하기\n3.나가기");
-            int actInput = sc.nextInt();
+            int actInput = promptMainAction();
 
             switch (actInput) {
                 case 1 -> {
                     showMenuBoard();
                     int menuId = readMenuSelection();
                     int quantity = readQuantity();
-
+                    Order order = startOrderForGuest(currentGuestId);
+                    order.addItem(menuId, quantity);
                 }
                 case 2 ->  {
+                    // 결제하기
                     // 멤버십, 적립금, 포인트, 행사(5잔 구매시 1잔 무료)
                 }
                 case 3 -> {
@@ -71,6 +69,16 @@ public class MembershipCouponMenu {
                 }
             }
         }
+    }
+
+    /**
+     * 메인 행위 입력
+     * @return
+     */
+    public int promptMainAction() {
+        System.out.println("1.메뉴 선택\n2.결제하기\n3.나가기");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
     }
 
     /**
@@ -123,4 +131,15 @@ public class MembershipCouponMenu {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
+
+    /**
+     * 게스트 생성 + 주문 생성
+     */
+    public Order startOrderForGuest(int guestId) {
+        OrderService orderService = new OrderService();
+
+        return orderService.createOrder(guestId);
+    }
+
+
 }
