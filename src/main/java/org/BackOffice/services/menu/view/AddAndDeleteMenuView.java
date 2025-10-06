@@ -2,27 +2,27 @@ package org.BackOffice.services.menu.view;
 
 import java.util.Scanner;
 
-public class MenuBoardSettingView {
+public class AddAndDeleteMenuView {
     // test
     public static void main(String[] args) {
-        MenuBoardSettingView.view();
+        AddAndDeleteMenuView.view();
     }
     public static void view() {
         System.out.println();
-        System.out.println("메뉴판 상태관리");
-        System.out.println("1. 가격 설정 \t 2. 상태 변경 \t 3. 이전페이지");
+        System.out.println("메뉴 등록 및 삭제");
+        System.out.println("1. 신메뉴 등록 \t 2. 메뉴 삭제 \t 3. 이전페이지");
         Scanner sc = new Scanner(System.in);
         int selection = sc.nextInt();
 
         switch (selection) {
             case 1 -> {
-                System.out.println("가격 설정 페이지로");
+                System.out.println("신메뉴 등록 페이지로 이동");
             }
             case 2 -> {
-                System.out.println("상태 변경 페이지로");
+                System.out.println("메뉴 삭제 페이지로 이동");
             }
             case 3 -> {
-                // 이전페이지
+                // 이전 페이지
                 MenuManagerView.view();
             }
         }
