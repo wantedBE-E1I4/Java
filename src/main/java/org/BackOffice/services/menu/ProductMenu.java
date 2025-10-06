@@ -1,8 +1,8 @@
 package org.BackOffice.services.menu;
 
 import java.util.Scanner;
-import org.BackOffice.services.menu.view.menuView;
-import org.BackOffice.services.menu.view.menuManagerView;
+import org.BackOffice.services.menu.view.MenuBoardView;
+import org.BackOffice.services.menu.view.MenuManagerView;
 
 public class ProductMenu {
 
@@ -19,10 +19,10 @@ public class ProductMenu {
 
         switch (selection) {
             case 1 -> {
-                menuView.view();
+                MenuBoardView.view();
             }
             case 2 -> {
-                menuManagerView.view();
+                MenuManagerView.view();
             }
         }
 

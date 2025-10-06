@@ -3,7 +3,7 @@ package org.BackOffice.services.menu.view;
 import java.util.Scanner;
 import org.BackOffice.services.menu.ProductMenu;
 
-public class menuManagerView {
+public class MenuManagerView {
     // Test를 위한 main 메서드
     public static void main(String[] args) {
         view();

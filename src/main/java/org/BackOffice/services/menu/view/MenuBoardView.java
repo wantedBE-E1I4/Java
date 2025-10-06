@@ -1,11 +1,10 @@
 package org.BackOffice.services.menu.view;
 
 import java.util.Scanner;
-import org.BackOffice.domain.InMemoryData;
 import org.BackOffice.domain.InMemoryData.Menu;
 import org.BackOffice.services.menu.ProductMenu;
 
-public class menuView {
+public class MenuBoardView {
 
     public static void view() {
         int menuCount = Menu.values().length;
