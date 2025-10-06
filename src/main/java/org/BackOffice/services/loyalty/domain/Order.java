@@ -8,6 +8,7 @@ public class Order {
     private final int id = ++seq;
     private final int guestId;
     private static int totalPay = 0;
+    private static int totalCups;
 
     List<OrderItem> items = new ArrayList<>();
 
@@ -23,13 +24,20 @@ public class Order {
         OrderItem orderItem = new OrderItem(menuId, quantity);
         items.add(orderItem);
         getTotal(orderItem.quantity, orderItem.price);
+
     }
 
     private void getTotal(int quantity, int price) {
         totalPay += (quantity * price);
+        totalCups += quantity;
     }
 
     public int getTotalPay() {
         return totalPay;
     }
+
+    public int getTotalCups() {
+        return totalCups;
+    }
+
 }
