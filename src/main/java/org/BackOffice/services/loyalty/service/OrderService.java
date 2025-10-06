@@ -10,8 +10,7 @@ public class OrderService {
     OrderRepository orderRepository = new OrderRepository();
 
     public Order createOrder(int currentGuestId) {
-        Order order = new Order(currentGuestId);
-        return order;
+        return new Order(currentGuestId);
     }
 
     /**
