@@ -1,14 +1,24 @@
 package org.BackOffice.services.menu.view;
 
+import java.util.Map;
 import java.util.Scanner;
-import org.BackOffice.domain.InMemoryData.Menu;
 import org.BackOffice.services.menu.ProductMenu;
+import org.BackOffice.services.menu.domain.MenuEntity;
+import org.BackOffice.services.menu.loader.ProductMenuLoader;
+import org.BackOffice.services.menu.service.ProductMenuService;
 
 public class MenuBoardView {
+    private static final ProductMenuService pms = new ProductMenuService();
+    private static final ProductMenu pm = new ProductMenu();
+
+    // test
+    public static void main(String[] args) {
+        ProductMenuLoader.syncMenuTable();
+        MenuBoardView.view();
+    }
 
     public static void view() {
-        int menuCount = Menu.values().length;
-        ProductMenu pm = new ProductMenu();
+        Map<Integer, MenuEntity> menuList = pms.getMenuList();
 
         // 메뉴판 View
         System.out.println();
@@ -16,8 +26,9 @@ public class MenuBoardView {
         System.out.println("메뉴ID \t 이름 \t 가격");
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= menuCount; i++) {
-            sb.append(i).append("\t").append(Menu.values()[i-1]).append("\t").append(Menu.values()[i-1].price);
+        for (int key : menuList.keySet()) {
+            MenuEntity menu = menuList.get(key);
+            sb.append(key).append("\t").append(menu.getMenuName()).append("\t").append(menu.getMenuPrice());
             sb.append("\n");
         }
         System.out.println(sb);
