@@ -3,6 +3,7 @@ package org.BackOffice.services.loyalty.domain;
 public class Guest {
     private Integer id;
     private Integer openOrderId;
+    private int pointBalance;
 
     public Integer getId() {
         return id;
