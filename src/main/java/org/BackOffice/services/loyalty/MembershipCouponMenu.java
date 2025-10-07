@@ -70,7 +70,6 @@ public class MembershipCouponMenu {
                     Guest guest = guestService.findGuest(guestRepository, guestId);
                     Integer openOrderId = guest.getOpenOrderId();
                     Order order = orderService.findOrder(orderRepository, openOrderId);
-                    //
                     int cups = order.getTotalCups();
                     validateBeforePay(cups);
                     // 멤버십, 적립금, 포인트, 행사(5잔 구매시 1잔 무료)
@@ -150,6 +149,8 @@ public class MembershipCouponMenu {
     public void validateBeforePay(int cups) {
         if (cups >= 5) {
             System.out.println("💰 결제 완료! 이번 주문 5잔 달성으로 무료 음료 쿠폰 1장 발급.");
+        } else {
+            System.out.println("💰 결제 완료!");
         }
     }
 
