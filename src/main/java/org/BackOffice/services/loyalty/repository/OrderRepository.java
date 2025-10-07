@@ -1,9 +1,7 @@
 package org.BackOffice.services.loyalty.repository;
 
-import org.BackOffice.services.loyalty.domain.Guest;
 import org.BackOffice.services.loyalty.domain.Order;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,12 +16,6 @@ public class OrderRepository {
     }
 
     public Order findById(int orderId) {
-        Collection<Order> values = orderMap.values();
-        for (Order value : values) {
-            if (orderId == value.getId()) {
-                return value;
-            }
-        }
-        return null;
+        return orderMap.get(orderId);
     }
 }
