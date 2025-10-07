@@ -7,7 +7,6 @@ import org.BackOffice.services.loyalty.repository.OrderRepository;
 
 public class OrderService {
     GuestService guestService = new GuestService();
-    OrderRepository orderRepository = new OrderRepository();
 
     public Order createOrder(int currentGuestId) {
         return new Order(currentGuestId);
@@ -16,7 +15,10 @@ public class OrderService {
     /**
      * 게스트 생성 + 주문 생성
      */
-    public int startOrderForGuest(GuestRepository guestRepository, int guestId) {
+    public int startOrderForGuest(
+            GuestRepository guestRepository,
+            OrderRepository orderRepository,
+            int guestId) {
         Guest guest = guestService.findGuest(guestRepository, guestId);
 
         if (guest.getOpenOrderId() == null) { // Guest 에 openOrderId 유무 확인
@@ -29,11 +31,11 @@ public class OrderService {
         return -1;
     }
 
-    public Order findOrder(int orderId) {
+    public Order findOrder(OrderRepository orderRepository, int orderId) {
         return orderRepository.findById(orderId);
     }
 
-    public void saveOrder(Order order) {
+    public void saveOrder(OrderRepository orderRepository, Order order) {
         orderRepository.save(order);
     }
 }

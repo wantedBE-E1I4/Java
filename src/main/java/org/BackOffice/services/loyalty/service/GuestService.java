@@ -1,6 +1,5 @@
 package org.BackOffice.services.loyalty.service;
 
-import org.BackOffice.services.loyalty.MembershipCouponMenu;
 import org.BackOffice.services.loyalty.domain.Guest;
 import org.BackOffice.services.loyalty.repository.GuestRepository;
 

@@ -3,6 +3,8 @@ package org.BackOffice.services.loyalty;
 import org.BackOffice.services.loyalty.domain.Guest;
 import org.BackOffice.services.loyalty.domain.MenuItem;
 import org.BackOffice.services.loyalty.domain.Order;
+import org.BackOffice.services.loyalty.repository.GuestRepository;
+import org.BackOffice.services.loyalty.repository.OrderRepository;
 import org.BackOffice.services.loyalty.service.GuestService;
 import org.BackOffice.services.loyalty.service.OrderService;
 
@@ -42,10 +44,12 @@ public class MembershipCouponMenu {
      * 주문 시작
      */
     public void startOrder() {
-
+        GuestRepository guestRepository = new GuestRepository();
+        OrderRepository orderRepository = new OrderRepository();
         GuestService guestService = new GuestService();
+        OrderService orderService = new OrderService();
 
-        int currentGuestId = guestService.createGuest();
+        int guestId = guestService.createGuest(guestRepository);
 
         boolean choosing = true;
         while (choosing) {
@@ -56,11 +60,19 @@ public class MembershipCouponMenu {
                     showMenuBoard();
                     int menuId = readMenuSelection();
                     int quantity = readQuantity();
-                    Order order = startOrderForGuest(currentGuestId);
+                    int orderId = orderService.startOrderForGuest(guestRepository, orderRepository, guestId);
+                    Order order = orderService.findOrder(orderRepository, orderId);
                     order.addItem(menuId, quantity);
+                    orderService.saveOrder(orderRepository, order);
                 }
                 case 2 ->  {
                     // 결제하기
+                    Guest guest = guestService.findGuest(guestRepository, guestId);
+                    Integer openOrderId = guest.getOpenOrderId();
+                    Order order = orderService.findOrder(orderRepository, openOrderId);
+                    //
+                    int cups = order.getTotalCups();
+                    validateBeforePay(cups);
                     // 멤버십, 적립금, 포인트, 행사(5잔 구매시 1잔 무료)
                 }
                 case 3 -> {
@@ -133,12 +145,12 @@ public class MembershipCouponMenu {
     }
 
     /**
-     * 게스트 생성 + 주문 생성
+     * 주문 수량 검증
      */
-    public Order startOrderForGuest(int guestId) {
-        OrderService orderService = new OrderService();
-
-        return orderService.createOrder(guestId);
+    public void validateBeforePay(int cups) {
+        if (cups >= 5) {
+            System.out.println("💰 결제 완료! 이번 주문 5잔 달성으로 무료 음료 쿠폰 1장 발급.");
+        }
     }
 
 
