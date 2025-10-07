@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private static int seq = 0;
-    private final int id = ++seq;
+    private int id;
     private final int guestId;
     private static int totalPay = 0;
     private static int totalCups;
@@ -24,7 +23,10 @@ public class Order {
         OrderItem orderItem = new OrderItem(menuId, quantity);
         items.add(orderItem);
         getTotal(orderItem.quantity, orderItem.price);
+    }
 
+    public void setId(int id) {
+        this.id = id;
     }
 
     private void getTotal(int quantity, int price) {
