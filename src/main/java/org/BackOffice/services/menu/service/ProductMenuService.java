@@ -1,5 +1,6 @@
 package org.BackOffice.services.menu.service;
 
+import static org.BackOffice.services.menu.tables.MenuTable.currentId;
 import static org.BackOffice.services.menu.tables.MenuTable.menuTable;
 
 import java.util.HashMap;
@@ -32,5 +33,17 @@ public class ProductMenuService {
         findEntity.setMenuStatus(status);
 
         return findEntity;
+    }
+
+    public void registerNewMenu(String name, int price) {
+        MenuEntity newMenu = MenuEntity.createMenuEntity(name,price,MenuStatus.신규);
+        menuTable.put(++currentId,newMenu);
+    }
+
+    public MenuEntity removeMenu(int id) {
+        MenuEntity findMenu = menuTable.get(id);
+
+        menuTable.remove(id);
+        return findMenu;
     }
 }
