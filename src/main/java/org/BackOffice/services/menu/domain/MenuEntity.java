@@ -29,4 +29,17 @@ public class MenuEntity {
     public MenuStatus getMenuStatus() {
         return this.status;
     }
+
+    // Setter
+    public void setMenuName(String menuName) {
+        this.name = menuName;
+    }
+
+    public void setMenuPrice(int menuPrice) {
+        this.price = menuPrice;
+    }
+
+    public void setMenuStatus(MenuStatus menuStatus) {
+        this.status = menuStatus;
+    }
 }
