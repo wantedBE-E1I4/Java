@@ -64,7 +64,7 @@ public class MenuStatusSettingView  {
 
         // 수정 로직
         MenuEntity updatedMenu = pms.updateMenuStatus(id, newStatus);
-        System.out.println(updatedMenu.getMenuName() + "을(를) " + updatedMenu.getMenuStatus()+ "로 변경하였습니다.1");
+        System.out.println(updatedMenu.getMenuName() + "을(를) " + updatedMenu.getMenuStatus()+ "로 변경하였습니다.");
 
         // 이전 페이지로 이동
         MenuBoardSettingView.view();
