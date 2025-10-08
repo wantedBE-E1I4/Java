@@ -16,10 +16,10 @@ public class AddAndDeleteMenuView {
 
         switch (selection) {
             case 1 -> {
-                System.out.println("신메뉴 등록 페이지로 이동");
+                MenuRegisterView.view();
             }
             case 2 -> {
-                System.out.println("메뉴 삭제 페이지로 이동");
+                MenuDeleteView.view();
             }
             case 3 -> {
                 // 이전 페이지
