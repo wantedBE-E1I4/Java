@@ -36,8 +36,11 @@ public class MenuStatusSettingView  {
         // 상태값 알려주는 테이블
         System.out.println("상태 번호 \t 상태 값");
         for (MenuStatus status : MenuStatus.values()) {
-            sb.append(status.statusValue).append(" \t\t\t ").append(status);
-            sb.append("\n");
+            if (!status.name().equals("삭제")) {
+                sb.append(status.statusValue).append(" \t\t\t ").append(status);
+                sb.append("\n");
+            }
+
         }
         System.out.println(sb);
 
