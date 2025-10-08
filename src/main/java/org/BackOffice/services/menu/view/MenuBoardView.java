@@ -9,7 +9,6 @@ import org.BackOffice.services.menu.service.ProductMenuService;
 
 public class MenuBoardView {
     private static final ProductMenuService pms = new ProductMenuService();
-    private static final ProductMenu pm = new ProductMenu();
 
     // test
     public static void main(String[] args) {
@@ -28,7 +27,7 @@ public class MenuBoardView {
         StringBuilder sb = new StringBuilder();
         for (int key : menuList.keySet()) {
             MenuEntity menu = menuList.get(key);
-            sb.append(key).append("\t").append(menu.getMenuName()).append("\t").append(menu.getMenuPrice());
+            sb.append(key).append("\t").append(menu.getMenuName()).append("("+menu.getMenuStatus()+")").append("\t").append(menu.getMenuPrice());
             sb.append("\n");
         }
         System.out.println(sb);
@@ -40,7 +39,7 @@ public class MenuBoardView {
 
         switch (selection) {
             case 1 -> {
-                pm.run();
+                ProductMenu.getInstance().run();
             }
         }
 
