@@ -16,10 +16,10 @@ public class MenuBoardSettingView {
 
         switch (selection) {
             case 1 -> {
-                System.out.println("가격 설정 페이지로");
+                MenuPriceSettingView.view();
             }
             case 2 -> {
-                System.out.println("상태 변경 페이지로");
+                MenuStatusSettingView.view();
             }
             case 3 -> {
                 // 이전페이지
