@@ -1,5 +1,6 @@
 package org.BackOffice.services.menu.loader;
 
+import static org.BackOffice.services.menu.tables.MenuTable.currentId;
 import static org.BackOffice.services.menu.tables.MenuTable.menuTable;
 
 import org.BackOffice.domain.InMemoryData.Menu;
@@ -28,7 +29,7 @@ public class ProductMenuLoader {
             Menu menu = initMenu[i-1];
 
             MenuEntity parseMenu = MenuEntity.createMenuEntity(menu.name(), menu.price, MenuStatus.판매중);
-            menuTable.put(i,parseMenu);
+            menuTable.put(++currentId,parseMenu);
         }
     }
 }

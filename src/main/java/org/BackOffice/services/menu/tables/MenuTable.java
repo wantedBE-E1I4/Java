@@ -6,4 +6,5 @@ import org.BackOffice.services.menu.domain.MenuEntity;
 
 public class MenuTable {
     public static Map<Integer, MenuEntity> menuTable = new HashMap<>();
+    public static int currentId = 0;
 }
