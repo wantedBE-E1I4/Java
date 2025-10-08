@@ -6,13 +6,28 @@ import org.BackOffice.services.menu.view.MenuBoardView;
 import org.BackOffice.services.menu.view.MenuManagerView;
 
 public class ProductMenu {
+    private static final ProductMenu instance = new ProductMenu();
+    private boolean initFlag = true;
+
+    // 싱글톤을 위한 생성자
+    private ProductMenu() {
+
+    }
+
+    public static ProductMenu getInstance() {
+        return instance;
+    }
 
     /**
      * ProductMenu에 진입하기 위한 실행 메서드
     * */
     public void run() {
         // 들어오면 InMemoryData에 있는 정보를 MenuTable에 동기화하기
-        ProductMenuLoader.syncMenuTable();
+        if (initFlag) {
+            ProductMenuLoader.syncMenuTable();
+            initFlag = false;
+        }
+
 
         // 출력하기
         System.out.println();
