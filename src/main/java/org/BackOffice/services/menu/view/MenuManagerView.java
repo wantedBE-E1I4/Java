@@ -9,7 +9,6 @@ public class MenuManagerView {
         view();
     }
     public static void view() {
-        ProductMenu pm = new ProductMenu();
 
         // 출력 화면
         System.out.println();
@@ -27,7 +26,7 @@ public class MenuManagerView {
                 AddAndDeleteMenuView.view();
             }
             case 3 -> {
-                pm.run();
+                ProductMenu.getInstance().run();
             }
         }
     }

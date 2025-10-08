@@ -27,7 +27,7 @@ public class ProductMenuLoader {
         for (int i = 1; i <= initMenu.length; i++) {
             Menu menu = initMenu[i-1];
 
-            MenuEntity parseMenu = MenuEntity.createMenuEntity(menu.name(), menu.price, MenuStatus.SELLING);
+            MenuEntity parseMenu = MenuEntity.createMenuEntity(menu.name(), menu.price, MenuStatus.판매중);
             menuTable.put(i,parseMenu);
         }
     }
