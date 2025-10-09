@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 📊 SalesAnalyzer
+ * SalesAnalyzer
  * ─────────────────────────────
  * [역할]
  *  - 매출 데이터를 분석하는 핵심 비즈니스 로직 담당 클래스
