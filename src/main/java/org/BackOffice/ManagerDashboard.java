@@ -62,7 +62,8 @@ public class ManagerDashboard {
                 MembershipCouponMenu membershipCouponMenu = new MembershipCouponMenu();
             }
             case 5 -> {
-                ProductMenu productMenu = new ProductMenu();
+                ProductMenu productMenu = ProductMenu.getInstance();
+                productMenu.run();
             }
         }
     }
