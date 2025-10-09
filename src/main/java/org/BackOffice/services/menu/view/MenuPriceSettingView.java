@@ -39,6 +39,9 @@ public class MenuPriceSettingView {
 
         // 수정 로직
         MenuEntity updatedMenu = pms.updateMenuPrice(id,price);
+        if (updatedMenu == null) {
+            MenuPriceSettingView.view();
+        }
 
         // 변경된 가격 알림
         System.out.println(updatedMenu.getMenuName() + "의 가격이 " + updatedMenu.getMenuPrice() + "원으로 변경되었습니다.");

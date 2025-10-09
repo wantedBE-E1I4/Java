@@ -37,6 +37,9 @@ public class MenuDeleteView {
 
         // 삭제 로직
         MenuEntity deletedMenu = pms.removeMenu(id);
+        if (deletedMenu == null) {
+            MenuDeleteView.view();
+        }
         System.out.println(deletedMenu.getMenuName() +"이(가) 삭제되었습니다.");
         System.out.println("이전 페이지로 돌아갑니다.");
         AddAndDeleteMenuView.view();

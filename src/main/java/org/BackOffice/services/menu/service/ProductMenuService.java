@@ -23,6 +23,10 @@ public class ProductMenuService {
 
     public MenuEntity updateMenuPrice(int id, int price) {
         MenuEntity findEntity = menuTable.get(id);
+        if (findEntity == null) {
+            System.out.println("존재하지 않는 메뉴입니다.");
+            return null;
+        }
         findEntity.setMenuPrice(price);
 
         return findEntity;
@@ -30,6 +34,10 @@ public class ProductMenuService {
 
     public MenuEntity updateMenuStatus(int id, MenuStatus status) {
         MenuEntity findEntity = menuTable.get(id);
+        if (findEntity == null) {
+            System.out.println("존재하지 않는 메뉴입니다.");
+            return null;
+        }
         findEntity.setMenuStatus(status);
 
         return findEntity;
@@ -42,6 +50,10 @@ public class ProductMenuService {
 
     public MenuEntity removeMenu(int id) {
         MenuEntity findMenu = menuTable.get(id);
+        if (findMenu == null) {
+            System.out.println("존재하지 않는 메뉴입니다.");
+            return null;
+        }
 
         menuTable.remove(id);
         return findMenu;
