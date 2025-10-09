@@ -50,7 +50,8 @@ public class ManagerDashboard {
 
         switch (input) {
             case 1 -> {
-                InventoryMenu inventoryMenu = new InventoryMenu();
+                InventoryMenu inventoryMenu = new InventoryMenu(parsedOrders);
+                inventoryMenu.printInventoryStatus();
             }
             case 2 -> {
                 SalesMenu salesMenu = new SalesMenu();
