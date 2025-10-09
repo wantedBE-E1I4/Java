@@ -8,15 +8,21 @@ public class Order {
     private final int guestId;
     private static int totalPay = 0;
     private static int totalCups;
+    private OrderStatus orderStatus;
 
     List<OrderItem> items = new ArrayList<>();
 
     public Order(int guestId) {
         this.guestId = guestId;
+        this.orderStatus = OrderStatus.OPEN;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getGuestId() {
+        return guestId;
     }
 
     public void addItem(int menuId, int quantity) {
