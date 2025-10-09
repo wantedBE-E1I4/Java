@@ -1,6 +1,8 @@
-package org.BackOffice.services.sales;
+package org.BackOffice.services.sales.service;
 
 import org.BackOffice.domain.InMemoryData;
+import org.BackOffice.services.sales.domain.MenuCostTable;
+
 import java.util.List;
 
 /**

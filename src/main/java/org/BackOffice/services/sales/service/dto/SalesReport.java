@@ -1,4 +1,4 @@
-package org.BackOffice.services.sales;
+package org.BackOffice.services.sales.service.dto;
 
 import java.util.List;
 

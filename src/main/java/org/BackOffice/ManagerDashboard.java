@@ -7,7 +7,7 @@ import org.BackOffice.services.orders.OrderMonitorMenu;
 import org.BackOffice.services.orderstatus.domain.Order;
 import org.BackOffice.services.orderstatus.parser.OrderParser;
 import org.BackOffice.services.orderstatus.service.OrderStatusService;
-import org.BackOffice.services.sales.SalesMenu;
+import org.BackOffice.services.sales.service.SalesMenu;
 
 import java.util.List;
 import java.util.Scanner;

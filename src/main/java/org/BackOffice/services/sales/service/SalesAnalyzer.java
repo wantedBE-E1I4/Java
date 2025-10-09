@@ -1,6 +1,8 @@
-package org.BackOffice.services.sales;
+package org.BackOffice.services.sales.service;
 
 import org.BackOffice.domain.InMemoryData;
+import org.BackOffice.services.sales.service.dto.SalesReport;
+
 import java.util.*;
 import java.util.stream.Collectors;
 

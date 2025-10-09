@@ -1,4 +1,4 @@
-package org.BackOffice.services.sales;
+package org.BackOffice.services.sales.domain;
 
 import org.BackOffice.domain.InMemoryData;
 import java.util.Map;
