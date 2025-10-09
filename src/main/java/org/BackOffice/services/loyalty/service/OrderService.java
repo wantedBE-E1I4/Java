@@ -15,12 +15,9 @@ public class OrderService {
     /**
      * 게스트 생성 + 주문 생성
      */
-    public int startOrderForGuest(
-            GuestRepository guestRepository,
-            OrderRepository orderRepository,
-            int guestId) {
+    public int startOrderForGuest(GuestRepository guestRepository, OrderRepository orderRepository, int guestId) {
         Guest guest = guestService.findGuest(guestRepository, guestId);
-
+        System.out.println("guest.getOpenOrderId() = " + guest.getOpenOrderId()); //결제 완료 후 같은 guestId로 왔을 때 null이어야하는데 //Order의 상태
         if (guest.getOpenOrderId() == null) { // Guest 에 openOrderId 유무 확인
             Order order = createOrder(guestId);// 없으면 Order 생성
 
@@ -37,5 +34,19 @@ public class OrderService {
 
     public void saveOrder(OrderRepository orderRepository, Order order) {
         orderRepository.save(order);
+    }
+
+    public void accrueLoyaltyPointsForPaidOrder(GuestRepository guestRepository,
+                                                OrderRepository orderRepository,
+                                                int orderId) {
+        Order order = findOrder(orderRepository, orderId); //주문 로드
+        double points = order.getTotalPay() * 0.10; // 포인트 계산
+        System.out.println("👏 결제액 " + order.getTotalPay() + "원, " + points + " 적립 포인트");
+        orderRepository.save(order);
+
+        int guestId = order.getGuestId(); //손님 조회
+        Guest guest = guestService.findGuest(guestRepository, guestId);
+        guest.pointBalance += (int) points;
+        guestRepository.save(guest);
     }
 }
