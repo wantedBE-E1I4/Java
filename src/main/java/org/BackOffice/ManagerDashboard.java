@@ -54,6 +54,7 @@ public class ManagerDashboard {
             }
             case 2 -> {
                 SalesMenu salesMenu = new SalesMenu();
+                salesMenu.printSalesReport();
             }
             case 3 -> {
                 OrderMonitorMenu orderMonitorMenu = new OrderMonitorMenu();
