@@ -1,6 +1,7 @@
 package org.BackOffice.services.menu;
 
 import java.util.Scanner;
+import org.BackOffice.ManagerDashboard;
 import org.BackOffice.services.menu.loader.ProductMenuLoader;
 import org.BackOffice.services.menu.view.MenuBoardView;
 import org.BackOffice.services.menu.view.MenuManagerView;
@@ -32,7 +33,7 @@ public class ProductMenu {
         // 출력하기
         System.out.println();
         System.out.println("메뉴 관리자");
-        System.out.println("1.메뉴판 확인 \t 2.메뉴 관리");
+        System.out.println("1.메뉴판 확인 \t 2.메뉴 관리 \t 3. 이전 페이지");
         Scanner sc = new Scanner(System.in);
         int selection = sc.nextInt();
 
@@ -43,6 +44,9 @@ public class ProductMenu {
             }
             case 2 -> {
                 MenuManagerView.view();
+            }
+            case 3 -> {
+                ManagerDashboard.main(new String[]{});
             }
         }
 
