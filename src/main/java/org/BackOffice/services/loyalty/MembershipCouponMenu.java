@@ -14,6 +14,7 @@ import org.BackOffice.services.loyalty.service.OrderService;
 import java.util.Scanner;
 
 public class MembershipCouponMenu {
+    private final static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         MembershipCouponMenu membership = new MembershipCouponMenu();
         membership.enter();
@@ -106,7 +107,6 @@ public class MembershipCouponMenu {
      */
     public int promptMainAction() {
         System.out.println("1.메뉴 선택\n2.결제하기\n3.나가기");
-        Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
 
@@ -126,7 +126,6 @@ public class MembershipCouponMenu {
      * @return
      */
     public int readMenuSelection() {
-        Scanner sc = new Scanner(System.in);
         return menuDisplayIndexToId(sc.nextInt());
     }
 
@@ -157,7 +156,6 @@ public class MembershipCouponMenu {
      */
     public int readQuantity() {
         System.out.println("수량을 입력하세요");
-        Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
 
@@ -179,7 +177,6 @@ public class MembershipCouponMenu {
         System.out.println("================");
         System.out.println("1.주문하기\n2.나가기");
         System.out.println("================");
-        Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
 }
