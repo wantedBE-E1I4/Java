@@ -13,7 +13,7 @@ public class LoyaltyRepository {
         return loyaltyMap.get(guestId);
     }
 
-    public void save(Guest guest, LoyaltyAccount account) {
-        loyaltyMap.put(guest.getId(), account);
+    public void save(LoyaltyAccount account) {
+        loyaltyMap.put(account.getGuestId(), account);
     }
 }
