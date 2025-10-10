@@ -57,6 +57,7 @@ public class ManagerDashboard {
             }
             case 3 -> {
                 OrderMonitorMenu orderMonitorMenu = new OrderMonitorMenu();
+                orderMonitorMenu.start(); // 새로 만든 start() 메서드 호출
             }
             case 4 -> {
                 MembershipCouponMenu membershipCouponMenu = new MembershipCouponMenu();
