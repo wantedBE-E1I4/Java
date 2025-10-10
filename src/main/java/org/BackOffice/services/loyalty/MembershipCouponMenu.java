@@ -1,12 +1,8 @@
 package org.BackOffice.services.loyalty;
 
 import org.BackOffice.services.loyalty.domain.Guest;
-import org.BackOffice.services.loyalty.domain.LoyaltyAccount;
 import org.BackOffice.services.loyalty.domain.MenuItem;
 import org.BackOffice.services.loyalty.domain.Order;
-import org.BackOffice.services.loyalty.repository.GuestRepository;
-import org.BackOffice.services.loyalty.repository.LoyaltyRepository;
-import org.BackOffice.services.loyalty.repository.OrderRepository;
 import org.BackOffice.services.loyalty.service.*;
 
 import java.util.Scanner;
@@ -38,12 +34,13 @@ public class MembershipCouponMenu {
     private void enter() {
         boolean inCafe = true;
         while (inCafe) {
-            // 1) 주문의사 확정
+            // 주문의사 확정
             int actInput = confirmOrderIntent();
 
             switch (actInput) {
                 case 1 -> {
-                    startOrder();
+                    int guestId = selectOrCreateGuest();
+                    startOrder(guestId);
                 }
                 case 2 -> {
                     System.out.println("안녕히 가세요!");
@@ -54,14 +51,31 @@ public class MembershipCouponMenu {
     }
 
     /**
+     * 게스트 식별 확정
+     * - 게스트 목록 (기존 선택 or 신규 생성)
+     * @Return 유효한 guestId
+     * @Return 잘못입력 시 -1 반환(임시)
+     */
+    public int selectOrCreateGuest() {
+        System.out.println("1.기존 선택 2.신규 생성");
+        int inputNum = sc.nextInt();
+        switch (inputNum) {
+            case 1 -> {
+                return guestService.selectExistingGuest();
+            }
+            case 2 -> {
+                return guestService.createGuest();
+            }
+        }
+        //TODO 잘못 입력에 대한 방어 코드 필요
+        return -1;
+    }
+
+    /**
      * 주문 시작
      */
-    public void startOrder() {
-        int guestId = guestService.createGuest();
-
-        //손님 id 선택
+    public void startOrder(int guestId) {
         System.out.println("["+guestId + "번 손님]");
-
 
         boolean choosing = true;
         while (choosing) {
