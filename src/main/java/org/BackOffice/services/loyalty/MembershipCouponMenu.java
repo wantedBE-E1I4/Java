@@ -7,14 +7,26 @@ import org.BackOffice.services.loyalty.domain.Order;
 import org.BackOffice.services.loyalty.repository.GuestRepository;
 import org.BackOffice.services.loyalty.repository.LoyaltyRepository;
 import org.BackOffice.services.loyalty.repository.OrderRepository;
-import org.BackOffice.services.loyalty.service.GuestService;
-import org.BackOffice.services.loyalty.service.LoyaltyService;
-import org.BackOffice.services.loyalty.service.OrderService;
+import org.BackOffice.services.loyalty.service.*;
 
 import java.util.Scanner;
 
+/**
+ * 파트 독립 실행 구조로 구성 (임시 컨텍스트 사용)
+ * - 메뉴 진입 시 AppContext/Service 로컬 초기화
+ * - 타 메뉴와 데이터 비공유
+ * - 추후 대시보드 기반 공용 컨텍스트/생성자 주입으로 통합 예정
+ */
 public class MembershipCouponMenu {
     private final static Scanner sc = new Scanner(System.in);
+
+    private final AppContext appCtx = new AppContext();
+    private final ServiceFactory factory = new ServiceFactory();
+
+    private final GuestService guestService = factory.createGuestService(appCtx.getGuestRepo());
+    private final OrderService orderService = factory.createOrderService(appCtx.getOrderRepo());
+    private final LoyaltyService loyaltyService = factory.createLoyaltyService(appCtx.getLoyaltyRepo());
+
     public static void main(String[] args) {
         MembershipCouponMenu membership = new MembershipCouponMenu();
         membership.enter();
@@ -45,19 +57,10 @@ public class MembershipCouponMenu {
      * 주문 시작
      */
     public void startOrder() {
-        GuestRepository guestRepository = new GuestRepository();
-        OrderRepository orderRepository = new OrderRepository();
-        LoyaltyRepository loyaltyRepository = new LoyaltyRepository();
-
-        GuestService guestService = new GuestService();
-        OrderService orderService = new OrderService();
-        LoyaltyService loyaltyService = new LoyaltyService();
-
-        int guestId = guestService.createGuest(guestRepository);
+        int guestId = guestService.createGuest();
 
         //손님 id 선택
         System.out.println("["+guestId + "번 손님]");
-
 
 
         boolean choosing = true;
@@ -69,29 +72,28 @@ public class MembershipCouponMenu {
                     showMenuBoard();
                     int menuId = readMenuSelection();
                     int quantity = readQuantity();
-                    int orderId = orderService.startOrderForGuest(guestRepository, orderRepository, guestId);
-                    Order order = orderService.findOrder(orderRepository, orderId);
+                    int orderId = orderService.startOrderForGuest(guestId);
+                    Order order = orderService.findOrder(orderId);
                     order.addItem(menuId, quantity);
-                    orderService.saveOrder(orderRepository, order);
+                    orderService.saveOrder(order);
                 }
                 case 2 ->  {
-                    //적립금 생성
-
                     // 결제하기
-                    Guest guest = guestService.findGuest(guestRepository, guestId);
+                    Guest guest = guestService.findGuest(guestId);
                     int openOrderId = guest.getOpenOrderId();
-                    Order order = orderService.findOrder(orderRepository, openOrderId);
+                    Order order = orderService.findOrder(openOrderId);
 
-                    loyaltyService.accruePoints(loyaltyRepository, guestId, order.getTotalPay());
+                    //적립금 생성
+                    loyaltyService.accruePoints(guestId, order.getTotalPay());
 
-                    orderService.switchToPaid(orderRepository, openOrderId);
+                    orderService.switchToPaid(openOrderId);
                     int cups = order.getTotalCups();
 
                     // 프로모션
                     validateBeforePay(cups);
 
                     //적립금
-                    orderService.accrueLoyaltyPointsForPaidOrder(orderRepository, openOrderId);
+                    orderService.accrueLoyaltyPointsForPaidOrder(openOrderId);
                 }
                 case 3 -> {
                     System.out.println("선택 종료");
