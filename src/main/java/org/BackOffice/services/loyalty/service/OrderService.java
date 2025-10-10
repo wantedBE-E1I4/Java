@@ -8,8 +8,6 @@ import org.BackOffice.services.loyalty.repository.GuestRepository;
 import org.BackOffice.services.loyalty.repository.OrderRepository;
 
 public class OrderService {
-    //GuestService guestService = new GuestService();
-
     OrderRepository orderRepo;
     public OrderService(OrderRepository orderRepo) {
         this.orderRepo = orderRepo;
