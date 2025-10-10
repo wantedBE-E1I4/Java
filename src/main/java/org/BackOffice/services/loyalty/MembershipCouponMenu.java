@@ -1,11 +1,14 @@
 package org.BackOffice.services.loyalty;
 
 import org.BackOffice.services.loyalty.domain.Guest;
+import org.BackOffice.services.loyalty.domain.LoyaltyAccount;
 import org.BackOffice.services.loyalty.domain.MenuItem;
 import org.BackOffice.services.loyalty.domain.Order;
 import org.BackOffice.services.loyalty.repository.GuestRepository;
+import org.BackOffice.services.loyalty.repository.LoyaltyRepository;
 import org.BackOffice.services.loyalty.repository.OrderRepository;
 import org.BackOffice.services.loyalty.service.GuestService;
+import org.BackOffice.services.loyalty.service.LoyaltyService;
 import org.BackOffice.services.loyalty.service.OrderService;
 
 import java.util.Scanner;
@@ -22,11 +25,8 @@ public class MembershipCouponMenu {
     private void enter() {
         boolean inCafe = true;
         while (inCafe) {
-            System.out.println("================");
-            System.out.println("1.주문하기\n2.나가기");
-            System.out.println("================");
-            Scanner sc = new Scanner(System.in);
-            int actInput = sc.nextInt();
+            // 1) 주문의사 확정
+            int actInput = confirmOrderIntent();
 
             switch (actInput) {
                 case 1 -> {
@@ -34,7 +34,7 @@ public class MembershipCouponMenu {
                 }
                 case 2 -> {
                     System.out.println("안녕히 가세요!");
-                    inCafe = false;
+                    inCafe = false;// ← UI 세션 종료: 도메인 상태 변경 없음
                 }
             }
         }
@@ -46,14 +46,22 @@ public class MembershipCouponMenu {
     public void startOrder() {
         GuestRepository guestRepository = new GuestRepository();
         OrderRepository orderRepository = new OrderRepository();
+        LoyaltyRepository loyaltyRepository = new LoyaltyRepository();
+
         GuestService guestService = new GuestService();
         OrderService orderService = new OrderService();
+        LoyaltyService loyaltyService = new LoyaltyService();
 
         int guestId = guestService.createGuest(guestRepository);
 
+        //손님 id 선택
+        System.out.println("["+guestId + "번 손님]");
+
+
+
         boolean choosing = true;
         while (choosing) {
-            int actInput = promptMainAction();
+            int actInput = promptMainAction(); // 메뉴 선택, 결제하기, 나가기
 
             switch (actInput) {
                 case 1 -> {
@@ -66,13 +74,23 @@ public class MembershipCouponMenu {
                     orderService.saveOrder(orderRepository, order);
                 }
                 case 2 ->  {
+                    //적립금 생성
+
                     // 결제하기
                     Guest guest = guestService.findGuest(guestRepository, guestId);
-                    Integer openOrderId = guest.getOpenOrderId();
+                    int openOrderId = guest.getOpenOrderId();
                     Order order = orderService.findOrder(orderRepository, openOrderId);
+
+                    loyaltyService.accruePoints(loyaltyRepository, guestId, order.getTotalPay());
+
+                    orderService.switchToPaid(orderRepository, openOrderId);
                     int cups = order.getTotalCups();
+
+                    // 프로모션
                     validateBeforePay(cups);
-                    // 멤버십, 적립금, 포인트, 행사(5잔 구매시 1잔 무료)
+
+                    //적립금
+                    orderService.accrueLoyaltyPointsForPaidOrder(orderRepository, openOrderId);
                 }
                 case 3 -> {
                     System.out.println("선택 종료");
@@ -154,5 +172,14 @@ public class MembershipCouponMenu {
         }
     }
 
-
+    /**
+     * 주문의사 확정
+     */
+    public int confirmOrderIntent() {
+        System.out.println("================");
+        System.out.println("1.주문하기\n2.나가기");
+        System.out.println("================");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
 }
