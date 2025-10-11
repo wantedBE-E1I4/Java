@@ -16,7 +16,7 @@ public class GuestService {
 
     public int createGuest() {
         Guest guest = new Guest();
-        guestRepo.save(guest);
+        guestRepo.create(guest);
         return guest.getId();
     }
 
@@ -25,6 +25,7 @@ public class GuestService {
     }
 
     public int selectExistingGuest() {
+        //TODO 기존 손님이 없을 경우
         guestRepo.listGuestIds();
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
@@ -38,7 +39,7 @@ public class GuestService {
     public void assignOpenOrderToGuest(int guestId, int orderId) {
         Guest guest = findGuest(guestId);
         guest.setOpenOrderId(orderId);
-        guestRepo.save(guest);
+        guestRepo.update(guest);
     }
 }
 
