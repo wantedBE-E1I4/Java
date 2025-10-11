@@ -6,30 +6,25 @@ import org.BackOffice.services.menu.loader.ProductMenuLoader;
 import org.BackOffice.services.menu.view.MenuBoardView;
 import org.BackOffice.services.menu.view.MenuManagerView;
 
+
+/*
+* [역할]
+* - 메뉴 관리자의 진입점
+*
+* [책임]
+* - ManagerDashBoard에서 넘어올 때 안내 메시지 출력
+* - 이후 사용자의 선택에 따라 다음 View로 이동
+*
+* [설계의도]
+* - 메뉴판만 확인(1번)
+* - 메뉴판의 메뉴에 대한 값들을 설정하는 설정(2번)
+* - 2가지로 분류하여 사용자들의 선택을 분리하기 위함
+* */
 public class ProductMenu {
-    private static final ProductMenu instance = new ProductMenu();
-    private boolean initFlag = true;
-
-    // 싱글톤을 위한 생성자
-    private ProductMenu() {
-
-    }
-
-    public static ProductMenu getInstance() {
-        return instance;
-    }
-
     /**
      * ProductMenu에 진입하기 위한 실행 메서드
     * */
     public void run() {
-        // 들어오면 InMemoryData에 있는 정보를 MenuTable에 동기화하기
-        if (initFlag) {
-            ProductMenuLoader.syncMenuTable();
-            initFlag = false;
-        }
-
-
         // 출력하기
         System.out.println();
         System.out.println("메뉴 관리자");
