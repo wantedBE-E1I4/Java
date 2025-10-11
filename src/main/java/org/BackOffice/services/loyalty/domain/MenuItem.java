@@ -22,4 +22,15 @@ public enum MenuItem {
     public int getId() {
         return id;
     }
+
+    //TODO idx+100 규칙 캡슐화
+    public static int findByDisplayIndex(int idx) {
+        MenuItem[] values = MenuItem.values();
+        for (MenuItem value : values) {
+            if ((idx + 100) == value.id) {
+                return value.id;
+            }
+        }
+        return -1;
+    }
 }

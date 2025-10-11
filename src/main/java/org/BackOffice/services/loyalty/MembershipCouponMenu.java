@@ -30,11 +30,11 @@ public class MembershipCouponMenu {
 
     /**
      * 손님 입장
+     * <br>- 주문의사 확정 or 종료
      */
     private void enter() {
         boolean inCafe = true;
         while (inCafe) {
-            // 주문의사 확정
             int actInput = confirmOrderIntent();
 
             switch (actInput) {
@@ -52,7 +52,7 @@ public class MembershipCouponMenu {
 
     /**
      * 게스트 식별 확정
-     * - 게스트 목록 (기존 선택 or 신규 생성)
+     * <br>- 게스트 목록 (기존 선택 or 신규 생성)
      * @Return 유효한 guestId
      * @Return 잘못입력 시 -1 반환(임시)
      */
@@ -79,14 +79,15 @@ public class MembershipCouponMenu {
 
         boolean choosing = true;
         while (choosing) {
-            int actInput = promptMainAction(); // 메뉴 선택, 결제하기, 나가기
+            int actInput = promptMainAction();
 
             switch (actInput) {
                 case 1 -> {
                     showMenuBoard();
                     int menuId = readMenuSelection();
                     int quantity = readQuantity();
-                    int orderId = orderService.startOrderForGuest(guestId);
+                    int orderId = orderService.createOrder(guestId);
+
                     Order order = orderService.findOrder(orderId);
                     order.addItem(menuId, quantity);
                     orderService.saveOrder(order);
@@ -119,6 +120,7 @@ public class MembershipCouponMenu {
 
     /**
      * 메인 행위 입력
+     * <br>-1.메뉴 선택 2.결제하기 3.나가기
      * @return
      */
     public int promptMainAction() {
@@ -138,32 +140,13 @@ public class MembershipCouponMenu {
     }
 
     /**
-     * 메뉴판 UI 번호 입력
-     * @return
+     * 메뉴판 UI 번호
+     * <br>- 고유 Id 매핑
+     * @return menuId
      */
     public int readMenuSelection() {
-        return menuDisplayIndexToId(sc.nextInt());
-    }
-
-    /**
-     * 메뉴판 번호를 menuItem의 Id로 변환
-     * @param menuDisplayNo
-     * @return int
-     */
-    public int menuDisplayIndexToId(int menuDisplayNo) {
-        int id = 0;
-        switch (menuDisplayNo) {
-            case 1 -> {
-                id = MenuItem.AMERICANO.id;
-            }
-            case 2 -> {
-                id = MenuItem.LATTE.id;
-            }
-            case 3 -> {
-                id = MenuItem.MOCHA.id;
-            }
-        }
-        return id;
+        int idx = sc.nextInt();
+        return MenuItem.findByDisplayIndex(idx);
     }
 
     /**
