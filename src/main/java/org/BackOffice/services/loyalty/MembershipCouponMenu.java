@@ -88,6 +88,7 @@ public class MembershipCouponMenu {
                     int quantity = readQuantity();
                     int orderId = orderService.createOrder(guestId);
 
+                    guestService.assignOpenOrderToGuest(guestId, orderId);
                     Order order = orderService.findOrder(orderId);
                     order.addItem(menuId, quantity);
                     orderService.saveOrder(order);
@@ -143,6 +144,7 @@ public class MembershipCouponMenu {
      * 메뉴판 UI 번호
      * <br>- 고유 Id 매핑
      * @return menuId
+     * <br>- 매칭 실패 시 -1 반환
      */
     public int readMenuSelection() {
         int idx = sc.nextInt();
