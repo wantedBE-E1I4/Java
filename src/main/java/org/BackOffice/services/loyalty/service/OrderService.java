@@ -24,10 +24,6 @@ public class OrderService {
         return orderRepo.findById(orderId);
     }
 
-    public void saveOrder(Order order) {
-        orderRepo.save(order);
-    }
-
     /**
      * 적립금 사용
      * @param points
