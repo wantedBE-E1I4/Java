@@ -5,7 +5,6 @@ import org.BackOffice.services.loyalty.adapter.MenuAdapter;
 import org.BackOffice.services.loyalty.domain.*;
 import org.BackOffice.services.loyalty.service.*;
 
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -43,7 +42,7 @@ public class MembershipCouponMenu {
                     Long guestId = selectOrCreateGuest();
                     switch (chooseInputMethod()) {
                         case MANUAL -> startOrder(guestId);
-                        case VOICE -> startCallOrder(guestId);
+                        case PRESET -> startCallOrder(guestId);
                     }
                 }
                 case 2 -> {
@@ -79,13 +78,13 @@ public class MembershipCouponMenu {
      * 입력 방식 선택
      * @return MANUAL, VOICE
      */
-    public Method chooseInputMethod() {
+    public InputChannel chooseInputMethod() {
         System.out.println("1.직접입력 2.구두입력");
         int inputNum = sc.nextInt();
         if (inputNum == 1) {
-            return Method.MANUAL;
+            return InputChannel.MANUAL;
         } else {
-            return Method.VOICE;
+            return InputChannel.PRESET;
         }
     }
 
