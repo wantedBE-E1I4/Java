@@ -4,26 +4,20 @@ import org.BackOffice.services.loyalty.repository.GuestRepository;
 import org.BackOffice.services.loyalty.repository.LoyaltyRepository;
 import org.BackOffice.services.loyalty.repository.OrderRepository;
 
+/**
+ * 무상태 Service 생성 전용
+ */
 public class ServiceFactory {
-    AppContext ctx = new AppContext();
-    ServiceFactory factory = new ServiceFactory(
-            ctx.guestRepo, ctx.orderRepo, ctx.loyaltyRepo);
 
-    public ServiceFactory(GuestRepository guestRepo, OrderRepository orderRepo, LoyaltyRepository loyaltyRepo) {
-        factory.createGuestService(guestRepo);
-        factory.createOrderService(orderRepo);
-        factory.createLoyaltyService(loyaltyRepo);
+    public GuestService createGuestService(GuestRepository guestRepo) {
+        return new GuestService(guestRepo);
     }
 
-    public void createGuestService(GuestRepository guestRepo) {
-        GuestService guestService = new GuestService(guestRepo);
+    public OrderService createOrderService(OrderRepository orderRepo) {
+        return new OrderService(orderRepo);
     }
 
-    public void createOrderService(OrderRepository orderRepo) {
-        OrderService orderService = new OrderService(orderRepo);
-    }
-
-    public void createLoyaltyService(LoyaltyRepository loyaltyRepo) {
-        LoyaltyService loyaltyService = new LoyaltyService(loyaltyRepo);
+    public LoyaltyService createLoyaltyService(LoyaltyRepository loyaltyRepo) {
+        return new LoyaltyService(loyaltyRepo);
     }
 }
