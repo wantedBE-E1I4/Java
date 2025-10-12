@@ -16,6 +16,7 @@ public class GuestRepository {
 
     /**
      * ID 할당+저장
+     * <br>-시퀀스 증가로 ID 부여 후 저장
      * @param guest
      */
     public void create(Guest guest) {
@@ -25,6 +26,7 @@ public class GuestRepository {
 
     /**
      * 상태변경+저장
+     * <br>-기존 ID 유지한 채 상태만 갱신
      * @param guest
      */
     public void update(Guest guest) {
@@ -34,7 +36,7 @@ public class GuestRepository {
     public void listGuestIds() {
         Collection<Guest> values = guestMap.values();
         for (Guest value : values) {
-            System.out.println(value.getId() + "번 손님"); //어딘가에서 save를 탄듯
+            System.out.println(value.getId() + "번 손님");
         }
     }
 }
