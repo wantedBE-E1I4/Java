@@ -1,16 +1,18 @@
 package org.BackOffice.services.loyalty.service;
 
-import org.BackOffice.services.loyalty.domain.Guest;
 import org.BackOffice.services.loyalty.domain.LoyaltyAccount;
-import org.BackOffice.services.loyalty.repository.GuestRepository;
 import org.BackOffice.services.loyalty.repository.LoyaltyRepository;
 
 public class LoyaltyService {
-    GuestService guestService = new GuestService();
+    LoyaltyRepository loyaltyRepo;
 
-    public void accruePoints(LoyaltyRepository loyaltyRepository, int guestId, int totalPay) {
-        LoyaltyAccount account = new LoyaltyAccount(guestId, totalPay);
+    public LoyaltyService(LoyaltyRepository loyaltyRepo) {
+        this.loyaltyRepo = loyaltyRepo;
+    }
 
-        loyaltyRepository.save(account);
+    public void accruePoints(int guestId, int totalPay) {
+        LoyaltyAccount account = loyaltyRepo.getOrCreateForGuest(guestId);
+        account.setBalance(totalPay);
+        System.out.println("포인트 잔액은 "+account.getBalance());
     }
 }
