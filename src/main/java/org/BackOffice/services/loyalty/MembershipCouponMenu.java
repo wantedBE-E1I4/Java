@@ -1,10 +1,11 @@
 package org.BackOffice.services.loyalty;
 
-import org.BackOffice.services.loyalty.domain.Guest;
-import org.BackOffice.services.loyalty.domain.MenuItem;
-import org.BackOffice.services.loyalty.domain.Order;
+import org.BackOffice.domain.InMemoryData;
+import org.BackOffice.services.loyalty.adapter.MenuAdapter;
+import org.BackOffice.services.loyalty.domain.*;
 import org.BackOffice.services.loyalty.service.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -39,8 +40,11 @@ public class MembershipCouponMenu {
 
             switch (actInput) {
                 case 1 -> {
-                    int guestId = selectOrCreateGuest();
-                    startOrder(guestId);
+                    Long guestId = selectOrCreateGuest();
+                    switch (chooseInputMethod()) {
+                        case MANUAL -> startOrder(guestId);
+                        case VOICE -> startCallOrder(guestId);
+                    }
                 }
                 case 2 -> {
                     System.out.println("안녕히 가세요!");
@@ -56,27 +60,39 @@ public class MembershipCouponMenu {
      * @Return 유효한 guestId
      * @Return 잘못입력 시 -1 반환(임시)
      */
-    public int selectOrCreateGuest() {
+    public Long selectOrCreateGuest() {
         System.out.println("1.기존 선택 2.신규 생성");
         int inputNum = sc.nextInt();
         switch (inputNum) {
             case 1 -> {
-                return guestService.selectExistingGuest();
+                //return guestService.selectExistingGuest();
             }
             case 2 -> {
                 return guestService.createGuest();
             }
         }
         //TODO 잘못 입력에 대한 방어 코드 필요
-        return -1;
+        return -1L;
     }
 
     /**
-     * 주문 시작
+     * 입력 방식 선택
+     * @return MANUAL, VOICE
      */
-    public void startOrder(int guestId) {
-        System.out.println("["+guestId + "번 손님]");
+    public Method chooseInputMethod() {
+        System.out.println("1.직접입력 2.구두입력");
+        int inputNum = sc.nextInt();
+        if (inputNum == 1) {
+            return Method.MANUAL;
+        } else {
+            return Method.VOICE;
+        }
+    }
 
+    /**
+     * 주문 시작(MANUAL)
+     */
+    public void startOrder(Long guestId) {
         boolean choosing = true;
         while (choosing) {
             int actInput = promptMainAction();
@@ -86,7 +102,7 @@ public class MembershipCouponMenu {
                     showMenuBoard();
                     int menuId = readMenuSelection();
                     int quantity = readQuantity();
-                    int orderId = orderService.createOrder(guestId);
+                    Long orderId = orderService.createOrder(guestId);
 
                     guestService.assignOpenOrderToGuest(guestId, orderId);
                     Order order = orderService.findOrder(orderId);
@@ -94,22 +110,8 @@ public class MembershipCouponMenu {
                     orderService.saveOrder(order);
                 }
                 case 2 ->  {
-                    // 결제하기
-                    Guest guest = guestService.findGuest(guestId);
-                    int openOrderId = guest.getOpenOrderId();
-                    Order order = orderService.findOrder(openOrderId);
+                    proceedToCheckout(guestId);
 
-                    //적립금 생성
-                    loyaltyService.accruePoints(guestId, order.getTotalPay());
-
-                    orderService.switchToPaid(openOrderId);
-                    int cups = order.getTotalCups();
-
-                    // 프로모션
-                    validateBeforePay(cups);
-
-                    //적립금
-                    orderService.accrueLoyaltyPointsForPaidOrder(openOrderId);
                 }
                 case 3 -> {
                     System.out.println("선택 종료");
@@ -127,6 +129,58 @@ public class MembershipCouponMenu {
     public int promptMainAction() {
         System.out.println("1.메뉴 선택\n2.결제하기\n3.나가기");
         return sc.nextInt();
+    }
+
+    /**
+     * 주문 시작(VOICE)
+     */
+    public void startCallOrder(Long guestId){
+        MenuAdapter adapter = new MenuAdapter();
+
+        for (InMemoryData.Order value : InMemoryData.ORDERS) {
+            Long orderId = orderService.createOrder(value.id());
+            Order order = orderService.findOrder(orderId);
+
+            for (InMemoryData.OrderLine line : value.lines()) {
+                int menuId = adapter.resolveMenuItem(line.menu());
+                order.addItem(menuId, line.qty());
+            }
+            orderService.saveOrder(order);
+        }
+
+        proceedToCheckout(guestId);
+    }
+
+    public void proceedToCheckout(Long guestId) {
+        Guest guest = guestService.findGuest(guestId);
+        Long openOrderId = guest.getOpenOrderId();
+        Order order = orderService.findOrder(openOrderId);
+
+        // 적립금 생성 및 저장
+        loyaltyService.accruePoints(guestId, order.getTotalPay());
+
+        // 적립금 반영
+        if (usePoints()) {
+            // 적립금 조회
+            int pointsBalance = loyaltyService.getPointsBalance(guestId);
+            System.out.println("적립금: " + pointsBalance);
+            int appliedPoints = orderService.applyPointsUse(pointsBalance, openOrderId);
+            loyaltyService.redeemPoints(guestId, appliedPoints);
+        }
+
+        // 결제 완료
+        orderService.switchToPaid(openOrderId);
+
+        int cups = order.getTotalCups();
+
+        // 프로모션
+        validateBeforePay(cups);
+
+        //영수증 출력
+        //checkoutReceipt();
+
+        //멤버십 관리
+        printMembershipSummary(guestId);
     }
 
     /**
@@ -179,5 +233,34 @@ public class MembershipCouponMenu {
         System.out.println("1.주문하기\n2.나가기");
         System.out.println("================");
         return sc.nextInt();
+    }
+
+    /**
+     * 적립금 사용 여부
+     * @return
+     */
+    public boolean usePoints() {
+        System.out.println("적립금을 사용하시겠어요? 1.네 2.아니오");
+        switch (sc.nextInt()) {
+            case 1 -> {
+                return true;
+            }
+            case 2 -> {
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+
+    /**
+     * 멤버십 요약 출력
+     * @param guestId
+     */
+    public void printMembershipSummary(Long guestId) {
+        System.out.println("[멤버십 관리]");
+        System.out.println("고객ID: U" + guestId);
+        System.out.println("적립 포인트: +" + loyaltyService.getPointsBalance(guestId));
     }
 }
