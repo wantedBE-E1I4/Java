@@ -11,4 +11,16 @@ public class AppContext {
     GuestRepository guestRepo = new GuestRepository();
     OrderRepository orderRepo = new OrderRepository();
     LoyaltyRepository loyaltyRepo = new LoyaltyRepository();
+
+    public GuestRepository getGuestRepo() {
+        return guestRepo;
+    }
+
+    public OrderRepository getOrderRepo() {
+        return orderRepo;
+    }
+
+    public LoyaltyRepository getLoyaltyRepo() {
+        return loyaltyRepo;
+    }
 }
