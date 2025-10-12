@@ -1,10 +1,7 @@
 package org.BackOffice.services.loyalty.service;
 
-import org.BackOffice.services.loyalty.domain.Guest;
-import org.BackOffice.services.loyalty.domain.LoyaltyAccount;
 import org.BackOffice.services.loyalty.domain.Order;
 import org.BackOffice.services.loyalty.domain.OrderStatus;
-import org.BackOffice.services.loyalty.repository.GuestRepository;
 import org.BackOffice.services.loyalty.repository.OrderRepository;
 
 public class OrderService {
@@ -31,11 +28,17 @@ public class OrderService {
         orderRepo.save(order);
     }
 
-    public void accrueLoyaltyPointsForPaidOrder(int orderId) {
-        Order order = findOrder(orderId); //주문 로드
-        double points = order.getTotalPay() * 0.10; // 포인트 계산
-        System.out.println("👏 결제액 " + order.getTotalPay() + "원, " + points + " 적립 포인트");
+    /**
+     * 적립금 사용
+     * @param points
+     */
+    public int applyPointsUse(int points, int orderId) {
+        Order order = findOrder(orderId);
+        order.setTotalPay(points);
         orderRepo.save(order);
+
+        System.out.println("🥳 [" + points + "] 적립 포인트가 사용되었습니다.");
+        return points;
     }
 
     /**
