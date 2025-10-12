@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OrderRepository {
-    private Map<Integer, Order> orderMap = new HashMap<>();
-    int seq = 0;
+    private Map<Long, Order> orderMap = new HashMap<>();
+    Long seq = 0L;
 
     public void save(Order order) {
         //id 발급
@@ -15,7 +15,7 @@ public class OrderRepository {
         orderMap.put(order.getId(), order);
     }
 
-    public Order findById(int orderId) {
+    public Order findById(Long orderId) {
         return orderMap.get(orderId);
     }
 }

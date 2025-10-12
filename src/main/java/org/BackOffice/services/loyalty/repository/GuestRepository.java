@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GuestRepository {
-    private final Map<Integer, Guest> guestMap = new HashMap<>();
-    static int seq = 100;
+    private final Map<Long, Guest> guestMap = new HashMap<>();
+    static Long seq = 100L;
 
-    public Guest findById(int guestId) {
+    public Guest findById(Long guestId) {
         return guestMap.get(guestId);
     }
 

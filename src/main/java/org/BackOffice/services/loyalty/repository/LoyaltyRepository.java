@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoyaltyRepository {
-    private final Map<Integer, LoyaltyAccount> loyaltyMap = new HashMap<>();
+    private final Map<Long, LoyaltyAccount> loyaltyMap = new HashMap<>();
 
-    public LoyaltyAccount findById(int guestId) {
+    public LoyaltyAccount findById(Long guestId) {
         return loyaltyMap.get(guestId);
     }
 
@@ -16,7 +16,7 @@ public class LoyaltyRepository {
         loyaltyMap.put(account.getGuestId(), account);
     }
 
-    public LoyaltyAccount getOrCreateForGuest(int guestId) {
+    public LoyaltyAccount getOrCreateForGuest(Long guestId) {
         LoyaltyAccount account = findById(guestId);
         if (account != null) {
             return account;

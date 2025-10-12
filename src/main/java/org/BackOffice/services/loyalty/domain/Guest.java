@@ -1,22 +1,22 @@
 package org.BackOffice.services.loyalty.domain;
 
 public class Guest {
-    private Integer id;
-    private Integer openOrderId;
+    private Long id;
+    private Long openOrderId;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void setOpenOrderId(Integer openOrderId) {
+    public void setOpenOrderId(Long openOrderId) {
         this.openOrderId = openOrderId;
     }
 
-    public Integer getOpenOrderId() {
+    public Long getOpenOrderId() {
         return openOrderId;
     }
 

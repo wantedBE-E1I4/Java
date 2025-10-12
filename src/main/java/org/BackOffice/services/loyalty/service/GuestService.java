@@ -14,29 +14,29 @@ public class GuestService {
         this.guestRepo = guestRepo;
     }
 
-    public int createGuest() {
+    public Long createGuest() {
         Guest guest = new Guest();
         guestRepo.create(guest);
         return guest.getId();
     }
 
-    public Guest findGuest(int guestId) {
+    public Guest findGuest(Long guestId) {
         return guestRepo.findById(guestId);
     }
 
-    public int selectExistingGuest() {
+    /*public Long selectExistingGuest() {
         //TODO 기존 손님이 없을 경우
         guestRepo.listGuestIds();
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
-    }
+    }*/
 
     /**
      * 게스트에게 진행중인 주문을 할당
      * @param guestId
      * @param orderId
      */
-    public void assignOpenOrderToGuest(int guestId, int orderId) {
+    public void assignOpenOrderToGuest(Long guestId, Long orderId) {
         Guest guest = findGuest(guestId);
         guest.setOpenOrderId(orderId);
         guestRepo.update(guest);

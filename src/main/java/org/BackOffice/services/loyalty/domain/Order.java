@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private int id;
-    private final int guestId;
+    private Long id;
+    private final Long guestId;
     private static int totalPay = 0;
     private static int totalCups;
     private OrderStatus orderStatus;
 
     List<OrderItem> items = new ArrayList<>();
 
-    public Order(int guestId) {
+    public Order(Long guestId) {
         this.guestId = guestId;
         this.orderStatus = OrderStatus.OPEN;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getGuestId() {
+    public Long getGuestId() {
         return guestId;
     }
 
@@ -31,7 +31,7 @@ public class Order {
         getTotal(orderItem.quantity, orderItem.price);
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -44,8 +44,19 @@ public class Order {
         return totalPay;
     }
 
+    public void setTotalPay(int point) {
+        totalPay -= point;
+    }
+
     public int getTotalCups() {
         return totalCups;
     }
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }

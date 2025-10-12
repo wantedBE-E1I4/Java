@@ -14,13 +14,13 @@ public class OrderService {
      * 주문생성 및 저장
      * @return orderId 반환
      */
-    public int createOrder(int guestId) {
+    public Long createOrder(Long guestId) {
         Order order = new Order(guestId);
         orderRepo.save(order);
         return order.getId();
     }
 
-    public Order findOrder(int orderId) {
+    public Order findOrder(Long orderId) {
         return orderRepo.findById(orderId);
     }
 
@@ -32,7 +32,7 @@ public class OrderService {
      * 적립금 사용
      * @param points
      */
-    public int applyPointsUse(int points, int orderId) {
+    public int applyPointsUse(int points, Long orderId) {
         Order order = findOrder(orderId);
         order.setTotalPay(points);
         orderRepo.save(order);
@@ -45,7 +45,7 @@ public class OrderService {
      * Order의 주문 상태를 OPEN -> PAID 변경
      * @param orderId
      */
-    public void switchToPaid(int orderId) {
+    public void switchToPaid(Long orderId) {
         Order order = findOrder(orderId);
         if (order.getOrderStatus() == OrderStatus.OPEN) {
             order.setOrderStatus(OrderStatus.PAID);
