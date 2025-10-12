@@ -2,19 +2,22 @@ package org.BackOffice.services.loyalty.domain;
 
 public class LoyaltyAccount {
     private int guestId;
-    private int balance;
+    private int balance = 0;
 
-    public LoyaltyAccount(int guestId, int pay) {
+    public LoyaltyAccount(int guestId) {
         this.guestId = guestId;
-        balance += cal(pay);
     }
 
     public int getGuestId() {
         return guestId;
     }
 
-    private int cal (int pay) {
-        return (int) (pay * 0.10);
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int totalPay) {
+        this.balance += (int) (totalPay * 0.10);
     }
 }
 
