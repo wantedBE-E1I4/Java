@@ -4,7 +4,9 @@ import java.util.Scanner;
 import org.BackOffice.ManagerDashboard;
 import org.BackOffice.services.menu.loader.ProductMenuLoader;
 import org.BackOffice.services.menu.view.MenuBoardView;
-import org.BackOffice.services.menu.view.MenuManagerView;
+//import org.BackOffice.services.menu.view.MenuManagerView;
+import org.BackOffice.services.menu.view.core.AbstractView;
+import org.BackOffice.services.menu.view.core.ViewRouter;
 
 
 /*
@@ -20,30 +22,25 @@ import org.BackOffice.services.menu.view.MenuManagerView;
 * - 메뉴판의 메뉴에 대한 값들을 설정하는 설정(2번)
 * - 2가지로 분류하여 사용자들의 선택을 분리하기 위함
 * */
-public class ProductMenu {
+public class ProductMenu extends AbstractView {
     /**
      * ProductMenu에 진입하기 위한 실행 메서드
     * */
-    public void run() {
-        // 출력하기
-        System.out.println();
-        System.out.println("메뉴 관리자");
-        System.out.println("1.메뉴판 확인 \t 2.메뉴 관리 \t 3. 이전 페이지");
+    @Override
+    public void show() {
+        printHeader("메뉴 관리자");
+        printBody("수행하고자 하는 번호를 입력해주세요.");
+        printFooter("1.메뉴판 확인 \t 2.메뉴 관리 \t 3. 이전 페이지");
         Scanner sc = new Scanner(System.in);
         int selection = sc.nextInt();
 
-
         switch (selection) {
             case 1 -> {
-                MenuBoardView.view();
+                ViewRouter.navigatorTo("menuBoard");
             }
             case 2 -> {
-                MenuManagerView.view();
-            }
-            case 3 -> {
-                ManagerDashboard.main(new String[]{});
+                ViewRouter.navigatorTo("menuManager");
             }
         }
-
     }
 }

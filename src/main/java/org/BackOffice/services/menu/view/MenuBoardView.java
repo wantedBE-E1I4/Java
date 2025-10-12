@@ -1,49 +1,35 @@
 package org.BackOffice.services.menu.view;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Scanner;
-import org.BackOffice.services.menu.ProductMenu;
+import org.BackOffice.services.menu.controller.MenuController;
 import org.BackOffice.services.menu.domain.MenuEntity;
 import org.BackOffice.services.menu.loader.ProductMenuLoader;
 import org.BackOffice.services.menu.service.ProductMenuService;
+import org.BackOffice.services.menu.view.core.AbstractView;
+import org.BackOffice.services.menu.view.core.ViewRouter;
 
-public class MenuBoardView {
-    private static final ProductMenuService pms = new ProductMenuService();
+public class MenuBoardView extends AbstractView {
+    private final MenuController controller = new MenuController();
 
-    // test
-    public static void main(String[] args) {
-        ProductMenuLoader.syncMenuTable();
-        MenuBoardView.view();
-    }
 
-    public static void view() {
-        Map<Integer, MenuEntity> menuList = pms.getMenuList();
+    @Override
+    public void show() {
+        // header
+        printHeader("메뉴판");
 
-        // 메뉴판 View
-        System.out.println();
-        System.out.println("메뉴판");
-        System.out.println("메뉴ID \t 이름 \t 가격");
+        // body
+        List<MenuEntity> data = controller.getMenuList();
+        printBody(data);
 
-        StringBuilder sb = new StringBuilder();
-        for (int key : menuList.keySet()) {
-            MenuEntity menu = menuList.get(key);
-            sb.append(key).append("\t").append(menu.getMenuName()).append("("+menu.getMenuStatus()+")").append("\t").append(menu.getMenuPrice());
-            sb.append("\n");
-        }
-        System.out.println(sb);
+        // footer
+        printFooter("1. 뒤로가기");
 
-        // 선택창 View
-        System.out.println("1. 이전 페이지");
+        // router
         Scanner sc = new Scanner(System.in);
         int selection = sc.nextInt();
-
         switch (selection) {
-            case 1 -> {
-                ProductMenu.getInstance().run();
-            }
+            case 1 -> ViewRouter.navigatorTo("productMenu");
         }
-
-
     }
-
 }

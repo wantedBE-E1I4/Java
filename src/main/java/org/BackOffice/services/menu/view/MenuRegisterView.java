@@ -1,34 +1,38 @@
 package org.BackOffice.services.menu.view;
 
 import java.util.Scanner;
+import org.BackOffice.services.menu.controller.MenuController;
+import org.BackOffice.services.menu.domain.MenuEntity;
 import org.BackOffice.services.menu.loader.ProductMenuLoader;
 import org.BackOffice.services.menu.service.ProductMenuService;
+import org.BackOffice.services.menu.view.core.AbstractView;
+import org.BackOffice.services.menu.view.core.ViewRouter;
 
-public class MenuRegisterView {
-    private static final ProductMenuService pms = new ProductMenuService();
+public class MenuRegisterView extends AbstractView {
+    private static final MenuController controller = new MenuController();
 
-    // test
-    public static void main(String[] args) {
-        ProductMenuLoader.syncMenuTable();
-        MenuRegisterView.view();
-    }
+    @Override
+    public void show() {
+        // header
+        printHeader("메뉴 등록");
 
-    public static void view() {
-        System.out.println();
-        System.out.println("메뉴 등록");
-        System.out.println("등록하고자 하는 메뉴의 이름과 가격을 입력해주세요.");
-        System.out.println("예시) 아포가토,6000");
+        // body
+        printBody(" ");
+
+        // footer
+        String[] messages = new String[]{"등록하고자 하는 메뉴의 이름과 가격을 입력해주세요.", "예시) 아포가토, 6000"};
+        printFooter(messages);
+
+        // register logic
         Scanner sc = new Scanner(System.in);
         String[] input = sc.nextLine().split(",");
         String name = input[0];
         int price = Integer.parseInt(input[1]);
 
-        // 메뉴 등록 로직
-        pms.registerNewMenu(name, price);
-        System.out.println(name+" 메뉴를 등록했습니다.");
-        System.out.println("이전 페이지로 돌아갑니다.");
+        MenuEntity newMenu = controller.registerMenu(name, price);
+        System.out.println("새로운 메뉴 '" +newMenu.getMenuName()+"'가 등록되었습니다.");
 
-        AddAndDeleteMenuView.view();
-
+        // router
+        ViewRouter.navigatorTo("menuAddAndDelete");
     }
 }
