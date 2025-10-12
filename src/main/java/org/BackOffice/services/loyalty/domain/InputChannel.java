@@ -1,5 +1,5 @@
 package org.BackOffice.services.loyalty.domain;
 
-public enum Method {
+public enum InputChannel {
     MANUAL, PRESET;
 }
