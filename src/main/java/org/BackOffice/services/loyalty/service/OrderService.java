@@ -16,7 +16,7 @@ public class OrderService {
      */
     public Long createOrder(Long guestId) {
         Order order = new Order(guestId);
-        orderRepo.save(order);
+        orderRepo.create(order);
         return order.getId();
     }
 
@@ -35,7 +35,7 @@ public class OrderService {
     public int applyPointsUse(int points, Long orderId) {
         Order order = findOrder(orderId);
         order.setTotalPay(points);
-        orderRepo.save(order);
+        orderRepo.update(order);
 
         System.out.println("🥳 [" + points + "] 적립 포인트가 사용되었습니다.");
         return points;
@@ -50,6 +50,11 @@ public class OrderService {
         if (order.getOrderStatus() == OrderStatus.OPEN) {
             order.setOrderStatus(OrderStatus.PAID);
         }
-        saveOrder(order);
+        orderRepo.update(order);
+    }
+
+    public void updateOrder(Long orderId) {
+        Order order = findOrder(orderId);
+        orderRepo.update(order);
     }
 }
