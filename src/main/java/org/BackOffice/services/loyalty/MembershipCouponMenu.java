@@ -1,8 +1,10 @@
 package org.BackOffice.services.loyalty;
 
+import com.sun.security.jgss.GSSUtil;
 import org.BackOffice.domain.InMemoryData;
 import org.BackOffice.services.loyalty.adapter.MenuAdapter;
 import org.BackOffice.services.loyalty.domain.*;
+import org.BackOffice.services.loyalty.formatter.PointsFormatter;
 import org.BackOffice.services.loyalty.service.*;
 
 import java.util.Scanner;
@@ -23,6 +25,7 @@ public class MembershipCouponMenu {
     private final OrderService orderService = factory.createOrderService(appCtx.getOrderRepo());
     private final LoyaltyService loyaltyService = factory.createLoyaltyService(appCtx.getLoyaltyRepo());
 
+    private final PointsFormatter pointsf = new PointsFormatter();
     public static void main(String[] args) {
         MembershipCouponMenu membership = new MembershipCouponMenu();
         membership.enter();
@@ -55,12 +58,14 @@ public class MembershipCouponMenu {
 
     /**
      * 게스트 식별 확정
-     * <br>- 게스트 목록 (기존 선택 or 신규 생성)
+     * <br>- 1.기존 선택 or 2.신규 생성
      * @Return 유효한 guestId
      * @Return 잘못입력 시 -1 반환(임시)
      */
     public Long selectOrCreateGuest() {
-        System.out.println("1.기존 선택 2.신규 생성");
+        System.out.println("=========================");
+        System.out.println("1.게스트 기존 선택 2.게스트 신규 생성");
+        System.out.println("=========================");
         int inputNum = sc.nextInt();
         switch (inputNum) {
             case 1 -> {
@@ -79,7 +84,9 @@ public class MembershipCouponMenu {
      * @return MANUAL, VOICE
      */
     public InputChannel chooseInputMethod() {
-        System.out.println("1.직접입력 2.구두입력");
+        System.out.println("=========================");
+        System.out.println("1.주문 직접입력 2.주문 인메모리");
+        System.out.println("=========================");
         int inputNum = sc.nextInt();
         if (inputNum == 1) {
             return InputChannel.MANUAL;
@@ -106,7 +113,7 @@ public class MembershipCouponMenu {
                     guestService.assignOpenOrderToGuest(guestId, orderId);
                     Order order = orderService.findOrder(orderId);
                     order.addItem(menuId, quantity);
-                    orderService.saveOrder(order);
+                    orderService.updateOrder(order.getId());
                 }
                 case 2 ->  {
                     proceedToCheckout(guestId);
@@ -130,24 +137,40 @@ public class MembershipCouponMenu {
         return sc.nextInt();
     }
 
+
     /**
-     * 주문 시작(VOICE)
+     * 주문 시작(PRESET)
      */
     public void startCallOrder(Long guestId){
         MenuAdapter adapter = new MenuAdapter();
+        boolean choosing = true;
+        while (choosing) {
+            System.out.println("1.메뉴 받아오기\n2.결제하기\n3.나가기");
+            int actInput = sc.nextInt();
+            switch (actInput) {
+                case 1 -> {
+                    for (InMemoryData.Order value : InMemoryData.ORDERS) {
+                        Long orderId = orderService.createOrder(value.id());
+                        Order order = orderService.findOrder(orderId);
 
-        for (InMemoryData.Order value : InMemoryData.ORDERS) {
-            Long orderId = orderService.createOrder(value.id());
-            Order order = orderService.findOrder(orderId);
+                        for (InMemoryData.OrderLine line : value.lines()) {
+                            int menuId = adapter.resolveMenuItem(line.menu());
+                            order.addItem(menuId, line.qty());
+                        }
+                        guestService.assignOpenOrderToGuest(guestId, orderId);
+                        orderService.updateOrder(orderId);
+                    }
+                }
+                case 2 ->  {
+                    proceedToCheckout(guestId);
 
-            for (InMemoryData.OrderLine line : value.lines()) {
-                int menuId = adapter.resolveMenuItem(line.menu());
-                order.addItem(menuId, line.qty());
+                }
+                case 3 -> {
+                    System.out.println("선택 종료");
+                    choosing = false;
+                }
             }
-            orderService.saveOrder(order);
         }
-
-        proceedToCheckout(guestId);
     }
 
     public void proceedToCheckout(Long guestId) {
@@ -162,7 +185,6 @@ public class MembershipCouponMenu {
         if (usePoints()) {
             // 적립금 조회
             int pointsBalance = loyaltyService.getPointsBalance(guestId);
-            System.out.println("적립금: " + pointsBalance);
             int appliedPoints = orderService.applyPointsUse(pointsBalance, openOrderId);
             loyaltyService.redeemPoints(guestId, appliedPoints);
         }
@@ -182,6 +204,7 @@ public class MembershipCouponMenu {
         printMembershipSummary(guestId);
     }
 
+    //TODO 인메모리 데이터 연동하기
     /**
      * 메뉴 항목 노출
      */
@@ -258,8 +281,12 @@ public class MembershipCouponMenu {
      * @param guestId
      */
     public void printMembershipSummary(Long guestId) {
+        System.out.println();
         System.out.println("[멤버십 관리]");
+
+        int points = loyaltyService.getPointsBalance(guestId);
+
         System.out.println("고객ID: U" + guestId);
-        System.out.println("적립 포인트: +" + loyaltyService.getPointsBalance(guestId));
+        System.out.println("적립 포인트: " + pointsf.formatPoints(points));
     }
 }
