@@ -47,7 +47,7 @@ public class ProductMenuService {
 
         findEntity.setMenuPrice(price);
 
-        return repo.save(findEntity);
+        return findEntity;
     }
 
     /**
@@ -63,7 +63,7 @@ public class ProductMenuService {
 
         findEntity.setMenuStatus(status);
 
-        return repo.save(findEntity);
+        return findEntity;
     }
 
     /**
