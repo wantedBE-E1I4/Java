@@ -38,13 +38,13 @@ public abstract class AbstractView implements View {
                 "ID", "메뉴 이름(상태)", "가격");
 
 
-        int index = 1;
         for (MenuEntity menu : menuList) {
+            long menuId = menu.getId();
             String nameWithStatus = menu.getMenuName() + "(" + menu.getMenuStatus().statusValue + ")";
             String priceFormatted = String.format("%d원", menu.getMenuPrice());
 
             System.out.printf("│ %2d │ %-"+NAME_WIDTH+"s │ %"+PRICE_WIDTH+"s │\n",
-                    index++, nameWithStatus, priceFormatted);
+                    menuId, nameWithStatus, priceFormatted);
         }
 
 
