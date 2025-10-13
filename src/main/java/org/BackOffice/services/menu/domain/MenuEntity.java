@@ -1,12 +1,15 @@
 package org.BackOffice.services.menu.domain;
 
 public class MenuEntity {
+    private long id;
     private String name;
     private int price;
     private MenuStatus status;
+    private static long autoIncrements = 0L;
 
     //팩토리 매서드
-    private MenuEntity( String name, int price, MenuStatus status) {
+    private MenuEntity(long id, String name, int price, MenuStatus status) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.status = status;
@@ -14,10 +17,15 @@ public class MenuEntity {
 
     // create MenuEntity
     public static MenuEntity createMenuEntity( String menuName, int menuPrice, MenuStatus menuStatus) {
-        return new MenuEntity( menuName, menuPrice, menuStatus);
+
+        return new MenuEntity(++autoIncrements, menuName, menuPrice, menuStatus);
     }
 
     // Getter
+    public long getId() {
+        return this.id;
+    }
+
     public String getMenuName() {
         return this.name;
     }
