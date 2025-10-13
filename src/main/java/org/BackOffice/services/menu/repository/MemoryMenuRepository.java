@@ -20,7 +20,7 @@ public class MemoryMenuRepository implements MenuRepository{
 
     @Override
     public Optional<MenuEntity> findById(Long id) {
-        return Optional.of(menuStore.get(id));
+        return Optional.ofNullable(menuStore.get(id));
     }
 
     @Override
@@ -38,6 +38,12 @@ public class MemoryMenuRepository implements MenuRepository{
     @Override
     public Optional<MenuEntity> delete(Long id) {
         MenuEntity deletedEntity = menuStore.remove(id);
-        return Optional.of(deletedEntity);
+        return Optional.ofNullable(deletedEntity);
     }
+
+    // 테스트 전용 초기화
+    public void clearStore() {
+        menuStore.clear();
+    }
+
 }
