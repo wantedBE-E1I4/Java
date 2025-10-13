@@ -1,12 +1,9 @@
 package org.BackOffice.services.menu.view;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import org.BackOffice.services.menu.controller.MenuController;
 import org.BackOffice.services.menu.domain.MenuEntity;
-import org.BackOffice.services.menu.loader.ProductMenuLoader;
-import org.BackOffice.services.menu.service.ProductMenuService;
 import org.BackOffice.services.menu.view.core.AbstractView;
 import org.BackOffice.services.menu.view.core.ViewRouter;
 
