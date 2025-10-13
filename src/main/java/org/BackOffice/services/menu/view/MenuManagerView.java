@@ -24,7 +24,7 @@ public class MenuManagerView extends AbstractView {
                 ViewRouter.navigatorTo("menuBoardSetting");
             }
             case 2 -> {
-                //
+                ViewRouter.navigatorTo("menuAddAndDelete");
             }
             case 3 -> {
                 ViewRouter.navigatorTo("productMenu");
