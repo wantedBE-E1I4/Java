@@ -15,4 +15,4 @@ public record Order(
         List<OrderItem> items,
         String couponCode,
         OrderStatus status
-) {}
+){}

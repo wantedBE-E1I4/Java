@@ -9,7 +9,9 @@ public final class InMemoryData {
     public enum Menu {
         AMERICANO(2000),
         LATTE(3000),
-        MOCHA(3500);
+        VANILLALATTE(3500),
+        COLDBREW(4500),
+        CAPPUCCINO(3000);
 
         public final int price;
         Menu(int price) { this.price = price; }
@@ -30,6 +32,11 @@ public final class InMemoryData {
 
     static {
         // 3) 레시피 채우기
+        RECIPE.put(Menu.COLDBREW, Map.of(
+                "coldBrew", 1,
+                "waterMl", 150
+                ));
+
         RECIPE.put(Menu.AMERICANO, Map.of(
                 "espressoShot", 1,
                 "waterMl", 150
@@ -38,17 +45,21 @@ public final class InMemoryData {
                 "espressoShot", 1,
                 "milkMl", 180
         ));
-        RECIPE.put(Menu.MOCHA, Map.of(
+        RECIPE.put(Menu.CAPPUCCINO, Map.of(
+                "espressoShot", 1,
+                "milkMl", 180
+        ));
+        RECIPE.put(Menu.VANILLALATTE, Map.of(
                 "espressoShot", 1,
                 "milkMl", 150,
-                "chocoSyrupPump", 2
+                "vanillaSyrup", 2
         ));
 
         // 4) 원재료 초기 재고
         INVENTORY.put("espressoShot", 200);
         INVENTORY.put("waterMl", 50_000);
         INVENTORY.put("milkMl", 10_000);
-        INVENTORY.put("chocoSyrupPump", 300);
+        INVENTORY.put("vanillaSyrup", 300);
 
         // 5) 샘플 주문
         ORDERS.add(new Order(
@@ -62,7 +73,7 @@ public final class InMemoryData {
         ORDERS.add(new Order(
                 2L,
                 LocalDateTime.now(),
-                List.of(new OrderLine(Menu.MOCHA, 3))
+                List.of(new OrderLine(Menu.VANILLALATTE, 3))
         ));
     }
 
