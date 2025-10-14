@@ -65,6 +65,7 @@ public class ManagerDashboard {
             }
             case 5 -> {
                 ProductMenu productMenu = new ProductMenu();
+                productMenu.show();
             }
         }
     }
