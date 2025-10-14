@@ -33,9 +33,6 @@ public class ManagerDashboard {
         // 3단계: 파싱된 데이터를 Service에 전달하여 서비스 객체 생성
         OrderStatusService orderStatusService = new OrderStatusService(parsedOrders);
 
-        // 4단계: Service의 기능을 실행하여 주문 현황 출력
-        orderStatusService.printAllOrders();
-
         // 참고: 다른 팀의 기능은 기존 InMemoryData를 그대로 사용할 수 있습니다.
         // System.out.println("\n--- 기존 재고 데이터 (영향 없음) ---");
         // System.out.println(org.BackOffice.domain.InMemoryData.INVENTORY);
@@ -59,6 +56,7 @@ public class ManagerDashboard {
             }
             case 3 -> {
                 OrderMonitorMenu orderMonitorMenu = new OrderMonitorMenu();
+                orderMonitorMenu.start(); // 새로 만든 start() 메서드 호출
             }
             case 4 -> {
                 MembershipCouponMenu membershipCouponMenu = new MembershipCouponMenu();
